@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CustomButton } from './components/general/CustomButton.js';
+import { MainPage } from './pages/MainPage.js';
+import { ProfilePictureSmall, ProfilePictureLarge } from './components/general/ProfilePicture';
+import { InitialPage } from './pages/InitialPage';
+import fire from './config/fire';
+import { Home } from './Home.js';
+import { Login } from './Login.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    };
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <div>{this.state.user ? <Home /> : <Login />}</div>
+      </div>
+    );
+  }
 }
 
 export default App;
