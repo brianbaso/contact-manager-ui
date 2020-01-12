@@ -1,7 +1,7 @@
 import React from "react";
 import Logout from "../components/auth/Logout";
 
-export default class ProfilePage extends React.Component {
+export default class HomePage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -9,7 +9,7 @@ export default class ProfilePage extends React.Component {
   render() {
     return (
       <div id="outer-container" style={styles.backdrop}>
-        <h1>Profile Page Insert Content here</h1>
+        <h1>Main Page Insert Content here</h1>
         <Logout />
       </div>
     );

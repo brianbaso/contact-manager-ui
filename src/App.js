@@ -1,25 +1,23 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { CustomButton } from './components/general/CustomButton.js';
-import { MainPage } from './pages/MainPage.js';
-import { ProfilePictureSmall, ProfilePictureLarge } from './components/general/ProfilePicture';
-import { InitialPage } from './pages/InitialPage';
-import fire from './config/fire';
-import { Home } from './Home.js';
-import { Login } from './Login.js';
+import React from "react";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import fire from "./config/Fire";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: null
     };
   }
 
+  // Directly after the component mounts, but before rendering,
+  // Check if a user is logged in
   componentDidMount() {
     this.authListener();
   }
 
+  // All this does is changes state based on if a user is signed in or not
   authListener() {
     fire.auth().onAuthStateChanged(user => {
       if (user) {
@@ -32,8 +30,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
-        <div>{this.state.user ? <Home /> : <Login />}</div>
+      <div className="App">
+        {this.state.user ? <HomePage /> : <LoginPage />}
       </div>
     );
   }
