@@ -1,20 +1,15 @@
 import React from "react";
 import Logout from "../components/auth/Logout";
+import { withRouter } from "react-router";
 
-export default class ProfilePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id="outer-container" style={styles.backdrop}>
-        <h1>Profile Page Insert Content here</h1>
-        <Logout />
-      </div>
-    );
-  }
-}
+const ProfilePage = props => {
+  return (
+    <div id="outer-container" style={styles.backdrop}>
+      <h1>Profile Page Insert Content here</h1>
+      <Logout />
+    </div>
+  );
+};
 
 const styles = {
   backdrop: {
@@ -30,3 +25,5 @@ const styles = {
     width: "100%"
   }
 };
+
+export default withRouter(ProfilePage);

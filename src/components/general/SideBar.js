@@ -1,5 +1,8 @@
 import React from "react";
-import { reveal as Menu } from "react-burger-menu";
+import { slide as Menu } from "react-burger-menu";
+
+// Originally was making a template, realized better to save it until later
+// Just kept this here in case to be used
 
 // Documentation:
 // https://github.com/negomi/react-burger-menu

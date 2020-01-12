@@ -1,26 +1,15 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React from "react";
+import { Button } from "react-bootstrap";
 
-export const CustomButton = ({ name, onClick, style }) => {
-  return (
-    <Button onClick={onClick} style={style}>
-      {name}
-    </Button>
-  );
-};
-
-export const AuthButton = ({ name, onClick }) => {
-  return (
-    <Button onClick={onClick} style={styles.auth} variane='primary' size='sm'>
-      {name}
-    </Button>
-  );
-};
+// Necessities:
+// Button for list of users
+// Button for list of options
+// Button for editing information
 
 const styles = {
   auth: {
-    color: 'black',
-    width: '60%',
-    height: '90%'
+    color: "black",
+    width: "60%",
+    height: "90%"
   }
 };
