@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./Auth";
 
 // Use this component for anything you want hidden behind user authentication
+// Shouldn't really need to touch this
 
 // Routes handle just going to different webpages
 // (x)/ => (x)/home => (x)/home/users, etc etc.

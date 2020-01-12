@@ -1,12 +1,53 @@
-import React from "react";
-import Login from "../components/auth/Login";
+import React, { useState, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
+import { AuthContext } from "../components/auth/Auth";
+import {
+  OptionsForm,
+  LogForm,
+  RegForm
+} from "../components/auth/LoginRegister";
 
 const LoginPage = props => {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleShowLogin = () => {
+    setShowLogin(true);
+    setShowRegister(false);
+  };
+
+  const handleShowRegister = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+  };
+
+  // All this does is checks if a user is already signed in
+  // If they are signed in already, redirect them somewhere else
+  // We're not using a privateroute here and have to do this manually
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
   return (
-    <div id="wrapper" style={styles.backdrop}>
+    <div style={styles.backdrop}>
       <div className="box" style={styles.boxOuter}>
         <div className="content" style={styles.boxInner}>
-          <Login />
+          <div className="col-md-6" style={styles.wrapper}>
+            <div>
+              {!showLogin && !showRegister && (
+                <OptionsForm
+                  showRegister={handleShowRegister}
+                  showLogin={handleShowLogin}
+                />
+              )}
+              {showLogin && !showRegister && (
+                <LogForm showRegister={handleShowRegister} />
+              )}
+              {showRegister && !showLogin && (
+                <RegForm showLogin={handleShowLogin} />
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +80,14 @@ const styles = {
     width: "90%",
     height: "80%",
     transform: "translate(-50%, -50%)"
+  },
+  wrapper: {
+    position: "absolute",
+    top: "50%",
+    msTransform: "translate(-50%)",
+    transform: "translateY(-50%)",
+    left: "25%"
   }
 };
 
-export default LoginPage;
+export default withRouter(LoginPage);

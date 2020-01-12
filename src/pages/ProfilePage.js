@@ -2,6 +2,13 @@ import React from "react";
 import Logout from "../components/auth/Logout";
 import { withRouter } from "react-router";
 
+// Necessities:
+// Name
+// Contact info used (phone, email, etc etc)
+
+// Stretch:
+// Profile Picture
+
 const ProfilePage = props => {
   return (
     <div id="outer-container" style={styles.backdrop}>

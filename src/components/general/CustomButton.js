@@ -5,6 +5,18 @@ import { Button } from "react-bootstrap";
 // Button for list of users
 // Button for list of options
 // Button for editing information
+const SignupBtn = ({ name, onClick }) => {
+  return (
+    <button
+      type="submit"
+      onClick={onClick}
+      style={{ marginLeft: "25px" }}
+      className="btn btn-success"
+    >
+      {name}
+    </button>
+  );
+};
 
 const styles = {
   auth: {
@@ -13,3 +25,5 @@ const styles = {
     height: "90%"
   }
 };
+
+export { SignupBtn };

@@ -5,7 +5,7 @@ import fire from "../../config/Fire.js";
 // Without having to explicitly pass it down every single time we make a component
 // https://reactjs.org/docs/context.html#classcontexttype
 
-// I'll be honest I'm still iffy on how to use contexts so comments are sparse
+// I'll be honest I'm still iffy on how to do this part so comments to explain are sparse
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
