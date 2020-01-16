@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import fire from "../../config/Fire.js";
+import * as firebase from "firebase/app";
 
 // Contexts just allow you to pass data down from a parent to child node in our tree
 // Without having to explicitly pass it down every single time we make a component
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   // https://reactjs.org/docs/hooks-effect.html
   // On mount check if a user is still signed in or not
   useEffect(() => {
-    fire.auth().onAuthStateChanged(setCurrentUser);
+    firebase.auth().onAuthStateChanged(setCurrentUser);
   }, []);
 
   return (

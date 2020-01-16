@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logout from "../components/auth/Logout";
+import axios from "axios";
 
-export default class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
+class HomePage extends React.Component {
+  componentDidMount() {
+    axios
+      .get("https://test-19353.firebaseio.com")
+      .then(res => console.log(res));
   }
 
   render() {
     return (
-      <div id="outer-container" style={styles.backdrop}>
-        <h1>Main Page Insert Content here</h1>
-        <Logout />
+      <div style={styles.backdrop}>
+        <div className="header">
+          <h1>Main Page Insert Content here</h1>
+          <Logout />
+        </div>
+
+        <div className="search">
+          <input></input>
+        </div>
       </div>
     );
   }
 }
+// const HomePage = () => {
+//   const [search, setSearch] = useState("");
+
+//   useEffect(() => {
+//     axios.get("https://test-19353.firebaseio.com");
+//   }, []);
+
+//   return (
+//     <div style={styles.backdrop}>
+//       <div className="header">
+//         <h1>Main Page Insert Content here</h1>
+//         <Logout />
+//       </div>
+
+//       <div className="search">
+//         <input></input>
+//       </div>
+//     </div>
+//   );
+// };
 
 const styles = {
   backdrop: {
@@ -30,3 +59,5 @@ const styles = {
     width: "100%"
   }
 };
+
+export default HomePage;

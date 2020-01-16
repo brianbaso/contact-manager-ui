@@ -1,21 +1,17 @@
 import React from "react";
-import fire from "../../config/Fire";
+import * as firebase from "firebase/app";
 
-class Logout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.logout = this.logout.bind(this);
-  }
+const Logout = () => {
+  const logout = () => {
+    firebase.auth().signOut();
+  };
 
-  // Pretty self explanatory
-  logout() {
-    fire.auth().signOut();
-  }
-
-  render() {
-    return <button onClick={this.logout}>Logout</button>;
-  }
-}
+  return (
+    <button onClick={logout} style={styles}>
+      Logout
+    </button>
+  );
+};
 
 const styles = {};
 

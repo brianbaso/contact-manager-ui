@@ -28,66 +28,43 @@ const LoginPage = props => {
   if (currentUser) {
     return <Redirect to="/" />;
   }
+
   return (
-    <div style={styles.backdrop}>
-      <div className="box" style={styles.boxOuter}>
-        <div className="content" style={styles.boxInner}>
-          <div className="col-md-6" style={styles.wrapper}>
-            <div>
-              {!showLogin && !showRegister && (
-                <OptionsForm
-                  showRegister={handleShowRegister}
-                  showLogin={handleShowLogin}
-                />
-              )}
-              {showLogin && !showRegister && (
-                <LogForm showRegister={handleShowRegister} />
-              )}
-              {showRegister && !showLogin && (
-                <RegForm showLogin={handleShowLogin} />
-              )}
-            </div>
-          </div>
-        </div>
+    <div className="box">
+      <div className="left">
+        {!showLogin && !showRegister && (
+          <OptionsForm
+            showRegister={handleShowRegister}
+            showLogin={handleShowLogin}
+          />
+        )}
+        {showLogin && !showRegister && (
+          <LogForm showRegister={handleShowRegister} />
+        )}
+        {showRegister && !showLogin && <RegForm showLogin={handleShowLogin} />}
       </div>
     </div>
   );
 };
 
-const styles = {
-  backdrop: {
-    position: "fixed",
-    backgroundColor: "#222",
-    color: " #e6e6e6",
-    borderColor: "#e6e6e6",
-    width: "100%",
-    height: "100%"
-  },
-  boxOuter: {
-    border: "3px solid white",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    width: "65%",
-    height: "80%",
-    transform: "translate(-50%, -50%)"
-  },
-  boxInner: {
-    border: "3px solid white",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    width: "90%",
-    height: "80%",
-    transform: "translate(-50%, -50%)"
-  },
-  wrapper: {
-    position: "absolute",
-    top: "50%",
-    msTransform: "translate(-50%)",
-    transform: "translateY(-50%)",
-    left: "25%"
-  }
-};
+// const styles = {
+//   backdrop: {
+//     position: "fixed",
+//     backgroundColor: "#222",
+//     color: " #e6e6e6",
+//     borderColor: "#e6e6e6",
+//     width: "100%",
+//     height: "100%"
+//   },
+//   box: {
+//     border: "3px solid white",
+//     position: "absolute",
+//     top: "50%",
+//     left: "50%",
+//     width: "65%",
+//     height: "80%",
+//     transform: "translate(-50%, -50%)"
+//   }
+// };
 
 export default withRouter(LoginPage);

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import fire from "../../config/Fire";
-import { SignupBtn } from "../general/CustomButton";
 import { InputForm } from "../general/InputForm";
+import * as firebase from "firebase/app";
 
 const OptionsForm = ({ showLogin, showRegister }) => {
   return (
     <div>
-      <SignupBtn name={"Login"} onClick={showLogin} />
-      <SignupBtn name={"Register"} onClick={showRegister} />
+      <button onClick={showLogin}>Login</button>
+      <button onClick={showRegister}>Register</button>
     </div>
   );
 };
@@ -29,11 +28,11 @@ const LogForm = ({ showRegister }) => {
 
     // Here we're checking the user's information and attempting to login
     // The catch is for any error (such as invalid info being given)
-    fire
+    firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(error => {
-        alert(error);
+        console.log(error);
       });
   };
 
@@ -41,21 +40,21 @@ const LogForm = ({ showRegister }) => {
     <div>
       <form>
         <InputForm
-          labelhead={"Email address"}
+          labelhead={"Email"}
           value={email}
           onChange={changeEmail}
           type={"email"}
-          placeholder={"Enter email"}
+          placeholder={"Enter your email address"}
         />
         <InputForm
           labelhead={"Password"}
           value={password}
           onChange={changePassword}
           type={"password"}
-          placeholder={"Password"}
+          placeholder={"Enter your password"}
         />
-        <SignupBtn name="Login" onClick={handleLogin} />
-        <SignupBtn name={"Go Register"} onClick={showRegister} />
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={showRegister}>Register an account</button>
       </form>
     </div>
   );
@@ -76,7 +75,7 @@ const RegForm = ({ showLogin }) => {
     e.preventDefault();
 
     // Here we are doing the same thing as handlelogin, just with creating an account
-    fire
+    firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(error => {
@@ -88,34 +87,34 @@ const RegForm = ({ showLogin }) => {
     <div>
       <form>
         <InputForm
-          labelhead={"Email address"}
+          labelhead={"Email"}
           value={email}
           onChange={changeEmail}
           type={"email"}
-          placeholder={"Enter email"}
+          placeholder={"Enter your email address"}
         />
         <InputForm
           labelhead={"Password"}
           value={password}
           onChange={changePassword}
           type={"password"}
-          placeholder={"Password"}
+          placeholder={"Enter your password"}
         />
-        <SignupBtn name="Register" onClick={handleSignup} />
-        <SignupBtn name={"Go Login"} onClick={showLogin} />
+        <button onClick={handleSignup}>Register</button>
+        <button onClick={showLogin}>Already have an account?</button>
       </form>
     </div>
   );
 };
 
-const styles = {
-  wrapper: {
-    position: "absolute",
-    top: "50%",
-    msTransform: "translate(-50%)",
-    transform: "translateY(-50%)",
-    left: "25%"
-  }
-};
+// const styles = {
+//   wrapper: {
+//     position: "absolute",
+//     top: "50%",
+//     msTransform: "translate(-50%)",
+//     transform: "translateY(-50%)",
+//     left: "25%"
+//   }
+// };
 
 export { LogForm, RegForm, OptionsForm };

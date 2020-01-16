@@ -6,20 +6,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthProvider } from "./components/auth/Auth";
 
-class App extends React.Component {
-  render() {
-    return (
-      <AuthProvider>
-        <Router>
-          <div>
-            <PrivateRoute exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <PrivateRoute exact path="/profile" component={ProfilePage} />
-          </div>
-        </Router>
-      </AuthProvider>
-    );
-  }
-}
+const App = () => (
+  <AuthProvider>
+    <Router>
+      <PrivateRoute exact path="/" component={HomePage} />
+      <Route exact path="/authentication" component={LoginPage} />
+      <PrivateRoute exact path="/profile" component={ProfilePage} />
+    </Router>
+  </AuthProvider>
+);
 
 export default App;
