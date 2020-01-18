@@ -5,10 +5,15 @@ import * as firebase from "firebase/app";
 const OptionsForm = ({ showLogin, showRegister }) => {
   return (
     <div>
+      <p>Login or Register an Account</p>
       <button onClick={showLogin}>Login</button>
       <button onClick={showRegister}>Register</button>
     </div>
   );
+};
+
+const errormsg = ({ msg }) => {
+  return <div>{msg}</div>;
 };
 
 const LoginForm = ({ showRegister }) => {
@@ -95,14 +100,26 @@ const RegisterForm = ({ showLogin }) => {
   );
 };
 
-// const styles = {
-//   wrapper: {
-//     position: "absolute",
-//     top: "50%",
-//     msTransform: "translate(-50%)",
-//     transform: "translateY(-50%)",
-//     left: "25%"
-//   }
-// };
+const styles = {
+  wrapper: {
+    position: "absolute",
+    top: "50%",
+    msTransform: "translate(-50%)",
+    transform: "translateY(-50%)",
+    left: "25%"
+  },
+  left: {
+    position: "relative",
+    border: "5px solid grey",
+    width: "50%",
+    float: "left",
+    height: "152%",
+    bottom: "26%"
+  },
+  buttons: {
+    border: "5px solid blue",
+    top: ""
+  }
+};
 
 export { LoginForm, RegisterForm, OptionsForm };
