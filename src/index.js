@@ -7,8 +7,6 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-// Just an empty project used to see how everything worked/looked
-// Note: if removing this swap in the actual project right away or won't work
 const firebaseConfig = {
   apiKey: "AIzaSyBXZKI_f6zs14h121Mno6aWbG0ZjkflcjM",
   authDomain: "contact-manager-98599.firebaseapp.com",
@@ -22,7 +20,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// const firebase = firebase.database().ref();
 ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
