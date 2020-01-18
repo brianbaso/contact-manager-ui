@@ -1,6 +1,48 @@
 import React from "react";
 import axios from "axios";
 
+const Contact = ({ show, contact }) => {
+  const editUser = () => console.log("Clicked");
+  const deleteUser = () => console.log("Deleted");
+  return (
+    <div>
+      <div style={{ border: "5px solid white" }}>
+        Name: {contact.name ? contact.name : "N/A"}
+        <br />
+        Phone Number: {contact.phoneNumber ? contact.phoneNumber : "N/A"}
+        <br />
+        Address: {contact.address ? contact.address : "N/A"}
+        <br />
+        <button onClick={editUser}>Select</button>
+        <button onClick={deleteUser}>Delete</button>
+      </div>
+      <div style={{ paddingBottom: "1%" }} />
+    </div>
+  );
+};
+
+const SearchList = ({ list, search }) => {
+  const data = list.filter(
+    (x, idx) =>
+      (x.name && x.name.toLowerCase().includes(search.toLowerCase())) ||
+      (x.phoneNumber && x.phoneNumber.includes(search)) ||
+      (x.address && x.address.toLowerCase().includes(search.toLowerCase()))
+  );
+
+  return (
+    <div>
+      {data.map((x, idx) => (
+        <Contact
+          key={idx}
+          show={false}
+          contact={x}
+          style={{ border: "5px solid white" }}
+        />
+      ))}
+    </div>
+  );
+};
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +53,7 @@ class SearchBar extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/"
@@ -28,24 +70,6 @@ class SearchBar extends React.Component {
 
   handleSearch = e => {
     this.setState({ search: e.target.value });
-    const show = this.state.accounts.filter(x => {
-      let searcher = this.state.search.toLowerCase();
-
-      // If you add more parameters just create more bools here
-      let namebool = x.name
-        ? x.name.toLowerCase().includes(searcher)
-        : undefined;
-      let numbool = x.phoneNumber
-        ? x.phoneNumber.includes(searcher)
-        : undefined;
-      let addressbool = x.address
-        ? x.address.toLowerCase().includes(searcher)
-        : undefined;
-      if (namebool || numbool || addressbool) {
-        return x;
-      }
-    });
-    this.setState({ accounts: show });
   };
 
   handleMessage = e => {
@@ -56,49 +80,11 @@ class SearchBar extends React.Component {
     console.log(e.target.value);
   };
 
-  // just comment out/delete the messaging thing if it conflicts with anything
-  // just doing stretchy stretch goals
-  // const msgurl = `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/${x.id}/msg`,
-
-  // Once you add the edit accounts feature throw it in the second return statement
   render() {
     return (
       <div>
         <input onChange={this.handleSearch}></input>
-        {this.state.accounts.map((x, idx) => {
-          return (
-            <div key={idx}>
-              {
-                <div>
-                  Name: {x.name ? x.name : "N/A"}
-                  <br />
-                  Phone Number: {x.phoneNumber ? x.phoneNumber : "N/A"}
-                  <br />
-                  Address: {x.address ? x.address : "N/A"}
-                  <br />
-                  <input type="text" onChange={this.handleMessage} />
-                  <button
-                    onClick={() => {
-                      const msg = this.state.msg;
-                      axios
-                        .put(
-                          `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/`,
-                          { msg }
-                        )
-                        .then(res => console.log(res))
-                        .catch(e => {
-                          console.log(e);
-                        });
-                    }}
-                  >
-                    Msg
-                  </button>
-                </div>
-              }
-              <br />
-            </div>
-          );
-        })}
+        <SearchList list={this.state.accounts} search={this.state.search} />
       </div>
     );
   }
