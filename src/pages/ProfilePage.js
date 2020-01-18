@@ -9,15 +9,27 @@ import { withRouter } from "react-router";
 // Stretch:
 // Profile Picture
 
-const ProfilePage = props => {
-  return (
-    <div id="outer-container" style={styles.backdrop}>
-      <h1>Profile Page Insert Content here</h1>
-      <Logout />
-    </div>
-  );
-};
+class ProfilePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userinfo: []
+    };
+  }
 
+  componentDidMount() {}
+
+  render() {
+    return (
+      <div id="outer-container" style={styles.backdrop}>
+        <h1>Profile Page Insert Content here</h1>
+        <Logout />
+      </div>
+    );
+  }
+}
+
+// <div styles={style.namehere}> </div>
 const styles = {
   backdrop: {
     position: "fixed",

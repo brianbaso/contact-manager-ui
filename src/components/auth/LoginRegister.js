@@ -11,23 +11,16 @@ const OptionsForm = ({ showLogin, showRegister }) => {
   );
 };
 
-const LogForm = ({ showRegister }) => {
+const LoginForm = ({ showRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Changes what's in our email state variable with what's in the email inputbox
   const changeEmail = e => setEmail(e.target.value);
-
-  // Changes what's in our password state variable with what's in the inputbox
   const changePassword = e => setPassword(e.target.value);
 
-  // Occcurs when login button is called
   const handleLogin = e => {
-    // Just says to stop allowing the button to function as it does for now
     e.preventDefault();
 
-    // Here we're checking the user's information and attempting to login
-    // The catch is for any error (such as invalid info being given)
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -60,21 +53,16 @@ const LogForm = ({ showRegister }) => {
   );
 };
 
-const RegForm = ({ showLogin }) => {
+const RegisterForm = ({ showLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Changes what's in our email state variable with what's in the email inputbox
   const changeEmail = e => setEmail(e.target.value);
-
-  // Changes what's in our password state variable with what's in the inputbox
   const changePassword = e => setPassword(e.target.value);
 
-  // Occurs when signup button is called
   const handleSignup = e => {
     e.preventDefault();
 
-    // Here we are doing the same thing as handlelogin, just with creating an account
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -117,4 +105,4 @@ const RegForm = ({ showLogin }) => {
 //   }
 // };
 
-export { LogForm, RegForm, OptionsForm };
+export { LoginForm, RegisterForm, OptionsForm };

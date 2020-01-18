@@ -9,6 +9,23 @@ class HomePage extends React.Component {
       .then(res => console.log(res));
   }
 
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/"
+  //     )
+  //     .then(res => {
+  //       const array = res.data;
+
+  //       for (let i = 0; i < array.length; i++) {
+  //         let name = array[i].data.name;
+  //         let num = array[i].data.phoneNumber;
+  //       }
+  //       console.log(array);
+  //     });
+  //   //.then(res => console.log(res.data));
+  // }, []);
+
   render() {
     return (
       <div style={styles.backdrop}>

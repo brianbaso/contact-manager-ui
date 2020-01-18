@@ -6,12 +6,15 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthProvider } from "./components/auth/Auth";
 
+// Change '/' and '/profile' to privateroutes after auth is allowed
+// Only '/authentication' should be public
+
 const App = () => (
   <AuthProvider>
     <Router>
-      <PrivateRoute exact path="/" component={HomePage} />
+      <Route exact path="/" component={HomePage} />
       <Route exact path="/authentication" component={LoginPage} />
-      <PrivateRoute exact path="/profile" component={ProfilePage} />
+      <Route exact path="/profile" component={ProfilePage} />
     </Router>
   </AuthProvider>
 );
