@@ -1,6 +1,13 @@
 import React from "react";
 
-const InputForm = ({ labelhead, value, onChange, type, placeholder }) => {
+const InputForm = ({
+  labelhead,
+  value,
+  onChange,
+  type,
+  placeholder,
+  pattern
+}) => {
   return (
     <div className="form-group">
       <label htmlFor="exampleInputEmail1">{labelhead}</label>
@@ -10,6 +17,7 @@ const InputForm = ({ labelhead, value, onChange, type, placeholder }) => {
         type={type}
         className="form-control"
         placeholder={placeholder}
+        pattern={pattern}
       />
     </div>
   );

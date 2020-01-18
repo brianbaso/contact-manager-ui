@@ -1,14 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { withRouter, Redirect } from "react-router";
 import { AuthContext } from "../components/auth/Auth";
-import {
-  OptionsForm,
-  LoginForm,
-  RegisterForm
-} from "../components/auth/LoginRegister";
+import { LoginForm, RegisterForm } from "../components/auth/LoginRegister";
 
 const LoginPage = props => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [showRegister, setShowRegister] = useState(false);
 
   const handleShowLogin = () => {
@@ -30,13 +26,8 @@ const LoginPage = props => {
     <div className="box" style={styles.backdrop}>
       <div className="center" style={styles.mainWindow}>
         <div className="left" style={styles.left}>
+          <div>Contact Manager</div>
           <div className="content" style={styles.leftContent}>
-            {!showLogin && !showRegister && (
-              <OptionsForm
-                showRegister={handleShowRegister}
-                showLogin={handleShowLogin}
-              />
-            )}
             {showLogin && !showRegister && (
               <LoginForm showRegister={handleShowRegister} />
             )}
@@ -65,36 +56,36 @@ const styles = {
     width: "65%",
     border: "4px solid white",
     padding: "70px 0",
-    textAlign: "center",
     margin: "0 auto",
     top: "23%",
-    height: "60%"
+    height: "60%",
+    minHeight: "60%"
   },
   left: {
     position: "relative",
     border: "5px solid grey",
-    width: "53%",
+    width: "40%",
     float: "left",
-    height: "154%",
+    height: "100%",
     bottom: "27%",
     right: ".4%"
   },
   leftContent: {
     border: "5px solid pink",
-    margin: 0,
-    position: "absolute",
+    margin: "auto",
+    position: "relative",
     top: "50%",
     msTransform: "translateY(-50%)",
     transform: "translateY(-50%)",
-    width: "100%"
+    width: "80%"
   },
   right: {
     position: "relative",
     border: "5px solid green",
-    width: "48%",
+    width: "61%",
     height: "154%",
     bottom: "27%",
-    left: "52.6%"
+    left: "39.5%"
   }
 };
 

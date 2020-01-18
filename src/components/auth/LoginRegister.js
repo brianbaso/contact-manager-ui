@@ -2,16 +2,6 @@ import React, { useState } from "react";
 import { InputForm } from "../general/InputForm";
 import * as firebase from "firebase/app";
 
-const OptionsForm = ({ showLogin, showRegister }) => {
-  return (
-    <div>
-      <p>Login or Register an Account</p>
-      <button onClick={showLogin}>Login</button>
-      <button onClick={showRegister}>Register</button>
-    </div>
-  );
-};
-
 const errormsg = ({ msg }) => {
   return <div>{msg}</div>;
 };
@@ -30,13 +20,14 @@ const LoginForm = ({ showRegister }) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch(error => {
-        console.log(error);
+        document.getElementById("error").innerHTML = error;
       });
   };
 
   return (
     <div>
       <form>
+        <div id="error"></div>
         <InputForm
           labelhead={"Email"}
           value={email}
@@ -50,9 +41,10 @@ const LoginForm = ({ showRegister }) => {
           onChange={changePassword}
           type={"password"}
           placeholder={"Enter your password"}
+          pattern={"(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}"}
         />
-        <button onClick={handleLogin}>Login</button>
-        <button onClick={showRegister}>Register an account</button>
+        <button onClick={handleLogin}>Sign in your account</button>
+        <button onClick={showRegister}>New user? Sign up</button>
       </form>
     </div>
   );
@@ -72,13 +64,14 @@ const RegisterForm = ({ showLogin }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch(error => {
-        console.log(error);
+        document.getElementById("error").innerHTML = error;
       });
   };
 
   return (
     <div>
       <form>
+        <div id="error"></div>
         <InputForm
           labelhead={"Email"}
           value={email}
@@ -93,8 +86,8 @@ const RegisterForm = ({ showLogin }) => {
           type={"password"}
           placeholder={"Enter your password"}
         />
-        <button onClick={handleSignup}>Register</button>
-        <button onClick={showLogin}>Already have an account?</button>
+        <button onClick={handleSignup}>Create account</button>
+        <button onClick={showLogin}>Have an account? Sign in</button>
       </form>
     </div>
   );
@@ -122,4 +115,4 @@ const styles = {
   }
 };
 
-export { LoginForm, RegisterForm, OptionsForm };
+export { LoginForm, RegisterForm };
