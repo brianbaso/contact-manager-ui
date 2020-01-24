@@ -21,59 +21,55 @@ class Homepage extends React.Component {
             contacts: []
         };
     }
+
     componentDidMount() {
         // temporary contacts array
         let contacts = [];
         // this is the url for get from postman... it works in post so it should work here? or no?
         axios.get('https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts')
-            .then((snapshot) => {
-                snapshot.forEach(contact => {
-                    contacts.push({...contact.data(), id: contact.id });
-                });
-                // copy the temp into the real state contacts
-                this.setState({ contacts: contacts });
+            .then((contacts) => {
+                this.setState({ contacts: contacts.data });
             })
             .catch((e) => {
                 console.log('Error getting contacts', e);
             });
     }
-render()
-{
-    // javascript
-    // temporary contacts
-    const contacts = [];
 
-    this.state.contacts.forEach((contact) => {
-        // optional console log to see data the JSON package
-        console.log(contact);
-        contacts.push(
-            <data
-                key={contact.id}
-                id={contact.id}
-                name={contact.data.name}
-                phone={contact.data.phoneNumber}
-                address={contact.data.address}
-            />
-        );
-    });
+    render()
+    {
+        // javascript
+        // temporary contacts
+        const contacts = [];
 
-    return (
-        // search bar after the header
-        // removed... <h1> Contacts </h1>
-        // removed... <ContactCard />
-        <div>
-            <Header />
-            {contacts}
+        this.state.contacts.forEach((contact) => {
+            // optional console log to see data the JSON package
+            console.log('contact', contact);
+            contacts.push(
+              // TODO: ContactCard will accept props
+                <ContactCard
+                    key={contact.id}
+                    id={contact.id}
+                    name={contact.data.name}
+                    phone={contact.data.phoneNumber}
+                    address={contact.data.address}
+                />
+            );
+        });
+        console.log(contacts);
 
-        </div>
-            // I have to add the list in here somewhere..
+        return (
+            // search bar after the header
+            // removed... <h1> Contacts </h1>
+            // removed... <ContactCard />
+            <div>
+                <Header />
+                {contacts}
 
-        );
+            </div>
+                // I have to add the list in here somewhere..
 
-
+            );
+    }
 }
-
-}
-
 
 export default Homepage;
