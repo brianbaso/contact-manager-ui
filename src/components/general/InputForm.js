@@ -23,12 +23,4 @@ const InputForm = ({
   );
 };
 
-// const styles = {
-//   auth: {
-//     color: "black",
-//     width: "60%",
-//     height: "90%"
-//   }
-// };
-
 export { InputForm };

@@ -26,7 +26,7 @@ const LoginPage = props => {
     <div className="box" style={styles.backdrop}>
       <div className="center" style={styles.mainWindow}>
         <div className="left" style={styles.left}>
-          <div>Contact Manager</div>
+          <div> Contact Manager</div>
           <div className="content" style={styles.leftContent}>
             {showLogin && !showRegister && (
               <LoginForm showRegister={handleShowRegister} />
@@ -36,7 +36,7 @@ const LoginPage = props => {
             )}
           </div>
         </div>
-        <div className="right" style={styles.right}></div>
+        {/* <div className="right" style={styles.right}></div> */}
       </div>
     </div>
   );
@@ -53,25 +53,28 @@ const styles = {
   },
   mainWindow: {
     position: "relative",
-    width: "65%",
+    width: "60%",
     border: "4px solid white",
-    padding: "70px 0",
     margin: "0 auto",
-    top: "23%",
-    height: "60%",
-    minHeight: "60%"
+    top: "20%",
+    height: "65%",
+    display: "flex",
+    flexDirection: "column"
   },
   left: {
     position: "relative",
-    border: "5px solid grey",
-    width: "40%",
-    float: "left",
+    backgroundColor: "white",
+    alignItems: "stretch",
     height: "100%",
-    bottom: "27%",
-    right: ".4%"
+    width: "50%",
+    border: "5px solid yellow",
+    float: "left",
+    flexGrow: "1"
   },
   leftContent: {
     border: "5px solid pink",
+
+    color: "black",
     margin: "auto",
     position: "relative",
     top: "50%",
@@ -82,6 +85,7 @@ const styles = {
   right: {
     position: "relative",
     border: "5px solid green",
+    float: "right",
     width: "61%",
     height: "154%",
     bottom: "27%",

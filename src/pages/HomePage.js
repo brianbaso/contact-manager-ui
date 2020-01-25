@@ -16,12 +16,11 @@ class HomePage extends React.Component {
     return (
       <div style={styles.backdrop}>
         <div className="header">
-          <h1>Main Page Insert Content here</h1>
           <Logout />
         </div>
+
         <div>
           <br />
-          SearchBar here
           <SearchBar />
         </div>
       </div>

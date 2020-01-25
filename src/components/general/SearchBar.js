@@ -1,25 +1,7 @@
 import React from "react";
 import axios from "axios";
-
-const Contact = ({ show, contact }) => {
-  const editUser = () => console.log("Clicked");
-  const deleteUser = () => console.log("Deleted");
-  return (
-    <div>
-      <div style={{ border: "5px solid white" }}>
-        Name: {contact.name ? contact.name : "N/A"}
-        <br />
-        Phone Number: {contact.phoneNumber ? contact.phoneNumber : "N/A"}
-        <br />
-        Address: {contact.address ? contact.address : "N/A"}
-        <br />
-        <button onClick={editUser}>Select</button>
-        <button onClick={deleteUser}>Delete</button>
-      </div>
-      <div style={{ paddingBottom: "1%" }} />
-    </div>
-  );
-};
+import Contact from "./Contact";
+import Magnifying_Glass from "../../icons/magnifying_glass.png";
 
 const SearchList = ({ list, search }) => {
   const data = list.filter(
@@ -83,25 +65,50 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.handleSearch}></input>
-        <SearchList list={this.state.accounts} search={this.state.search} />
+        <div className="SearchBar" style={styles.searchWrapper}>
+          <i style={styles.imageWrapper}>
+            <img src={Magnifying_Glass} style={styles.image} />
+          </i>
+          <input
+            style={styles.searchbar}
+            value={this.state.search}
+            placeholder="Search"
+            onChange={this.handleSearch}
+          ></input>
+        </div>
+        <div className="SearchList">
+          <SearchList list={this.state.accounts} search={this.state.search} />
+        </div>
       </div>
     );
   }
 }
 
 const styles = {
-  backdrop: {
-    position: "fixed",
-    backgroundColor: "#222",
-    color: " #e6e6e6",
-    borderColor: "#e6e6e6",
-    width: "100%",
-    height: "100%"
+  searchWrapper: {
+    margin: "auto",
+    width: "80%"
   },
-  mainWindow: {
-    position: "fixed",
-    width: "100%"
+  searchbar: {
+    margin: "auto",
+    width: "100%",
+    borderRadius: "3px",
+    textAlign: "right",
+    padding: "5px",
+    paddingRight: "15px",
+    paddingLeft: "15px"
+  },
+  imageWrapper: {
+    position: "absolute",
+    padding: "10px",
+    pointerEvents: "none"
+  },
+  image: {
+    width: "7%",
+    height: "7%",
+    position: "relative",
+    bottom: "7px",
+    right: "1%"
   }
 };
 

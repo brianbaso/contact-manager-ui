@@ -1,7 +1,6 @@
 import React from "react";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthProvider } from "./components/auth/Auth";
@@ -14,7 +13,7 @@ const App = () => (
     <Router>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/authentication" component={LoginPage} />
-      <Route exact path="/profile" component={ProfilePage} />
+      {/* <Route exact path="/profile" component={ProfilePage} /> */}
     </Router>
   </AuthProvider>
 );
