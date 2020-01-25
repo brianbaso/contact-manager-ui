@@ -2,16 +2,19 @@
 import { Component } from 'react';
 import "./ContactCardStyle.scss";
 
-// this will accept props
+
 class ContactCard extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    // see what the contactCard is getting for props
     componentWillRender() {
         console.log(this.props)
     }
 
     render() {
+        // display a contact card
         return (
             <div4>
                 <p>
@@ -22,32 +25,6 @@ class ContactCard extends React.Component {
             </div4>    
         );
     }
-
-
-/*
-processProps = () => {
-   
-    return { contactList };
-}
-this.props.map((this.props, index) =>
-            <p key={index}>
-*/
-/*
- <p>
-                {this.props.data.name} <br />
-                {this.props.data.phoneNumber} <br />
-                {this.props.data.address}
-  </p>
- */
-
-
-/*
-        <div4>
-            <name1> Name: {this.props.data.} </name1>
-            <phone1> Phone: {this.props.data.phoneNumber}</phone1>
-            <ad1> Address: {fields.data.address}</ad1>
-        </div4>
-        */
 
 }
 

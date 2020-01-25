@@ -4,10 +4,6 @@ import ContactCard from "./contactCard.js";
 import "./HomepageStyle.scss";
 import axios from "axios";
 
-//import UsersContactCard from "./UsersContactCard.js";
-//import { render } from "react-dom";
-//import ContactList from "./ContactList.js";
-
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +33,7 @@ class Homepage extends React.Component {
   render() {
     return (
       // search bar after the header
+        // pass the information to contactCard
       <div>
         <Header />
         {this.state.contacts.map((contact, idx) => {
@@ -53,51 +50,6 @@ class Homepage extends React.Component {
     );
   }
 
-  /* BEST ATTEMPT SO FAR WAS UNDER HEADER
-           {contacts.map((contact, index) => {
-               //console.log(contact)
-               return <ContactCard {...contact}/>
-           })}
-           */
-  // I have to add the list in here somewhere..
-  // {contacts} (was under <Header />)
-  // removed... <h1> Contacts </h1>
-  // !removed... <ContactCard /> under header
-  // pass in the props to the contact card component
-  // passed in the array of contactCard objects into contactCard.js
-  /*
-    {
-        contacts.map((contact, index) =>
-            <ContactCard
-                name={contact.data.name}
-                phoneNumber={contact.data.phoneNumber}
-                address={contact.data.address}
-            />
-        )
-    }
-    */
-  /*
-var i;
-for (i = 0; i < contacts.length; i++)
-{
-    <ContactCard
-        name={contacts[i].data.name}
-        phoneNumber={contacts[i].data.phoneNumber}
-        address={contacts[i].data.address}
-    />
-}
-*/
-  // youtube tut
-
-  /*
-contacts.forEach(function (contact) {
-    <ContactCard
-        name={contact.data.name}
-        phoneNumber={contact.data.phoneNumber}
-        address={contact.data.address}
-    />
-})
-*/
 }
 
 export default Homepage;
