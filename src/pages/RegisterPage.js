@@ -4,19 +4,19 @@ import { AuthContext } from "../components/auth/Auth";
 import AuthForm from "../components/auth/AuthForm";
 import * as firebase from "firebase/app";
 
-const LoginPage = () => {
+const RegisterPage = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const changeEmail = e => setEmail(e.target.value);
   const changePassword = e => setPassword(e.target.value);
 
-  const handleLogin = e => {
+  const handleSignup = e => {
     e.preventDefault();
 
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .catch(error => {
         document.getElementById("error").innerHTML = error;
       });
@@ -34,10 +34,10 @@ const LoginPage = () => {
           <AuthForm
             changeEmail={changeEmail}
             changePassword={changePassword}
-            btnText={"Sign in your account"}
-            btnOnclick={handleLogin}
-            smallText={"New user? Sign up"}
-            smallOnclick={"/register"}
+            btnText={"Create account"}
+            btnOnclick={handleSignup}
+            smallText={"Have an account? Sign in"}
+            smallOnclick={"/login"}
           />
         </div>
         {/* <div className="right" style={styles.right}></div> */}
@@ -82,7 +82,7 @@ const styles = {
 
     // Display
     height: "100%",
-    width: "40%",
+    width: "45%",
 
     // Color
     backgroundColor: "white"
@@ -96,10 +96,11 @@ const styles = {
 
     // Display
     width: "61%",
-    height: "154%"
+    height: "154%",
 
     // Color
+    border: "5px solid green"
   }
 };
 
-export default withRouter(LoginPage);
+export default withRouter(RegisterPage);
