@@ -5,17 +5,16 @@ import "./HomepageStyle.scss";
 import axios from "axios";
 
 class Homepage extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      contacts: []
-    };
-  }
+        this.state = {
+            contacts: []
+        };
+    }
 
+    // invoked immediately after a component is mounted, good place for network requests
   componentDidMount() {
-    // temporary contacts array
-    let contacts = [];
     // cors-anywhere to fix the cors error
     axios
       .get(
@@ -32,7 +31,7 @@ class Homepage extends React.Component {
 
   render() {
     return (
-      // search bar after the header
+      // NEED TO INSERT: search bar after the header
         // pass the information to contactCard
       <div>
         <Header />

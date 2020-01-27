@@ -1,14 +1,9 @@
 ﻿import React from 'react';
-import { Component } from 'react';
 import "./ContactCardStyle.scss";
 
 
 class ContactCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    // see what the contactCard is getting for props
+    // display in console what the contactCard is getting for props
     componentWillRender() {
         console.log(this.props)
     }

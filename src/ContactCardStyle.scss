@@ -1,26 +1,29 @@
-﻿div4 {
+﻿// This is the white box for each of the contactCards
+div4 {
     position: relative;
     background: #ffffff;
     top: 120px;
     left: 300px;
-    padding-left: 465px;
-    padding-right: 145px;
+    padding-left: 770px;
     padding-bottom: 120px;
     box-shadow: 3px 3px #808080,
 }
 
+// name line for the contact card
 name1{
     position: relative;
     left: 15px;
     top: -10px;
 }
 
+// phone line for the contact card
 phone1 {
     position: relative;
     left: 15px;
     top: -10px;
 }
 
+// address line for the contact card
 ad1 {
     position: relative;
     left: 15px;
