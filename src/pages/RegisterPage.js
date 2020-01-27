@@ -3,6 +3,7 @@ import { withRouter, Redirect } from "react-router";
 import { AuthContext } from "../components/auth/Auth";
 import AuthForm from "../components/auth/AuthForm";
 import * as firebase from "firebase/app";
+import Women from "../icons/woman_of_color.jpg";
 
 const RegisterPage = props => {
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ const RegisterPage = props => {
             smallOnclick={"/login"}
           />
         </div>
-        {/* <div className="right" style={styles.right}></div> */}
+        <img src={Women} style={styles.img} />
       </div>
     </div>
   );
@@ -57,7 +58,7 @@ const styles = {
 
     // Color
     background:
-      "linear-gradient(227deg, rgba(3,164,166,1) 38%, rgba(178,31,228,1) 76%, rgba(137,43,235,1) 100%)"
+      "linear-gradient(227deg, rgba(3,164,166,1) 31%, rgba(178,31,228,1) 59%, rgba(137,43,235,1) 100%)"
   },
   mainWindow: {
     // Positioning
@@ -68,38 +69,31 @@ const styles = {
     // Display
     width: "70%",
     height: "80%",
-    border: "4px solid white",
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "15px"
+    // border: "4px solid white",
+    // display: "flex",
+    flexDirection: "column"
   },
   left: {
     // Positioning
     position: "relative",
-    alignItems: "stretch",
     float: "left",
-    flexGrow: "1",
 
     // Display
     height: "100%",
-    width: "45%",
+    width: "40%",
 
     // Color
-    backgroundColor: "white"
+    backgroundColor: "white",
+    borderRadius: "15px 0px 0px 15px "
   },
-  right: {
+  img: {
     // Positioning
     position: "relative",
     float: "right",
-    bottom: "27%",
-    left: "39.5%",
-
     // Display
-    width: "61%",
-    height: "154%",
-
-    // Color
-    border: "5px solid green"
+    width: "60%",
+    height: "100%",
+    borderRadius: "0px 15px 15px 0px"
   }
 };
 

@@ -115,7 +115,7 @@ const styles = {
     margin: "auto",
 
     // Display
-    width: "50%",
+    width: "70%",
     display: "block",
     textAlign: "center",
 
