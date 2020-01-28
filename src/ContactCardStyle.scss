@@ -2,14 +2,15 @@
 div4 {
     position: relative;
     background: #ffffff;
-    top: 150px;
+    top: 180px;
     left: 300px;
     padding-top: 50px;
     padding-left: 770px;
-    padding-bottom:40px;
+    padding-bottom: 60px;
     box-shadow: 3px 3px #808080;
+    // TO DO: fix so it works on the right corners
     // a very slight rounded corner
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 // name line for the contact card
@@ -19,7 +20,7 @@ name1 {
     font-weight: 600;
     position: relative;
     left: 15px;
-    top: -70px;
+    top: -60px;
 }
 
 // phone line for the contact card
@@ -29,7 +30,7 @@ phone1 {
     color: #727279;
     font-weight: 600;
     left: 15px;
-    top: -77px;
+    top: -67px;
 }
 
 // address line for the contact card
@@ -39,5 +40,5 @@ ad1 {
     color: #727279;
     font-weight: 600;
     left: 15px;
-    top: -85px;
+    top: -75px;
 }
