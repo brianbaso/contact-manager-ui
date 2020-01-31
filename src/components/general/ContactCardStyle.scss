@@ -1,0 +1,59 @@
+// This is the white box for each of the contactCards
+div4 {
+    position: center;
+    background: #ffffff;
+    top: 150px;
+    left: 300px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom:40px;
+    box-shadow: 3px 3px #808080;
+    
+    display: block;
+    // a very slight rounded corner
+    border-radius: 3px;
+}
+
+// name line for the contact card
+name1 {
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    position: center;
+    left: -80px;
+    top: -40px;
+}
+
+// phone line for the contact card
+phone1 {
+    position: relative;
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    left: -80px;
+    top: -20px;
+}
+
+// address line for the contact card
+ad1 {
+    position: relative;
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    left: -72px;
+    top: 0px;
+}
+
+// 'Create Contact' button
+butn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
