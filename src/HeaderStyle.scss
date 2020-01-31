@@ -1,0 +1,19 @@
+﻿// This is the Top blue box that has "Contact Manager" on top of it
+div {
+    position: relative;
+    background: #38BDFD;
+    width: 1280px;
+    height: 50px;
+    padding-top: 1px;
+    box-shadow: .3px .3px #808080,
+}
+
+// This is the "Contact Manager" text
+t1 {
+    position: relative;
+    left: 280px;
+    padding-left: 15px;
+    text-align: left;
+    color: #ffffff;
+    font-size: 30px;
+}
