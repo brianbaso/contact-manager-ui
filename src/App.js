@@ -8,15 +8,7 @@ import { AuthProvider } from "./components/auth/Auth";
 import Logout from "./components/auth/Logout";
 import { AuthContext } from "./components/auth/Auth";
 
-// Change '/' and '/profile' to privateroutes after auth is allowed
-// Only '/authentication' should be public
-
 const HomePageTest = () => {
-  // const { currentUser } = useContext(AuthContext);
-  // if (currentUser) {
-  //   return <Redirect to="/login" />;
-  // }
-
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
     return <Redirect to="/login" />;
