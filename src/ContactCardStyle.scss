@@ -1,0 +1,44 @@
+﻿// This is the white box for each of the contactCards
+div4 {
+    position: relative;
+    background: #ffffff;
+    top: 180px;
+    left: 300px;
+    padding-top: 50px;
+    padding-left: 770px;
+    padding-bottom: 60px;
+    box-shadow: 3px 3px #808080;
+    // TO DO: fix so it works on the right corners
+    // a very slight rounded corner
+    border-radius: 5px;
+}
+
+// name line for the contact card
+name1 {
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    position: relative;
+    left: 15px;
+    top: -60px;
+}
+
+// phone line for the contact card
+phone1 {
+    position: relative;
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    left: 15px;
+    top: -67px;
+}
+
+// address line for the contact card
+ad1 {
+    position: relative;
+    font-family: Arial;
+    color: #727279;
+    font-weight: 600;
+    left: 15px;
+    top: -75px;
+}
