@@ -1,8 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './App.css';
-import CreateContactPage from "./pages/CreateContactPage.js";
+
 import React, { useContext } from "react";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
