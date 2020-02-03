@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import axios from 'axios';
 import "./ContactCardStyle.scss";
 
 
@@ -8,6 +9,14 @@ class ContactCard extends React.Component {
         console.log(this.props)
     }
 
+    onDelete()
+    {
+      let meetupId = this.state.details.id;
+      axios.delete(`http://localhost:3000${meetupId}`)
+        .then(response => {
+          this.props.history.push('/');
+        }).catch(err => console.log(err));
+    }
     render() {
         // display a contact card
         return (
@@ -18,7 +27,8 @@ class ContactCard extends React.Component {
                     </phone1> <br /> <br />
                     <ad1> Address: {this.props.address}  </ad1>
                 </p>
-            </div4>    
+                <button onClick={this.onDelete.bind(this.onDelete)} className = "Delete Button">Delete</button>
+            </div4>
         );
     }
 
