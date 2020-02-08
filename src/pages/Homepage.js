@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "./Header.js";
-import ContactCard from "./contactCard.js";
-// import "./HomepageStyle.scss";
+import Header from "../components/general/Header.js";
+import ContactCard from "../components/general/contactCard";
 import axios from "axios";
 
 class Homepage extends React.Component {

@@ -4,7 +4,6 @@ import { AuthContext } from "../components/auth/Auth";
 import AuthForm from "../components/auth/AuthForm";
 import Women from "../icons/woman_of_color.jpg";
 import * as firebase from "firebase/app";
-import Header from "../Header.js";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");

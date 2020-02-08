@@ -1,5 +1,4 @@
 ﻿import React from "react";
-// import "./ContactCardStyle.scss";
 
 class ContactCard extends React.Component {
   // display in console what the contactCard is getting for props
