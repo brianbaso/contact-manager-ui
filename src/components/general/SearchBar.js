@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
+import ContactCard from "./ContactCard";
 
 const SearchList = ({ list, search }) => {
   const data = list.filter(
@@ -9,6 +10,12 @@ const SearchList = ({ list, search }) => {
       (x.phoneNumber && x.phoneNumber.includes(search)) ||
       (x.address && x.address.toLowerCase().includes(search.toLowerCase()))
   );
+
+  // key={contact.id}
+  // name={contact.data.name}
+  // address={contact.data.address}
+  // phoneNumber={contact.data.phoneNumber}
+  // style={styles.ContactCard}
 
   // When done, just throw in the contact component in here, like so
   /*
@@ -21,7 +28,15 @@ const SearchList = ({ list, search }) => {
         />
       ))}
   */
-  return <div></div>;
+
+  return data.map((x, idx) => (
+    <ContactCard
+      key={idx}
+      name={x.name}
+      address={x.address}
+      phoneNumber={x.phoneNumber}
+    />
+  ));
 };
 
 class SearchBar extends React.Component {

@@ -37,8 +37,8 @@ const styles = {
   div4: {
     position: "relative",
     background: "#ffffff",
-    top: "180px",
-    left: "300px",
+    top: "100px",
+    left: "20%",
     paddingTop: "50px",
     paddingLeft: "770px",
     paddingBottom: "60px",

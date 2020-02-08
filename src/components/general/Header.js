@@ -1,9 +1,10 @@
 ﻿import React from "react";
-
+import Logout from "../auth/Logout";
 class Header extends React.Component {
   render() {
     return (
       <div style={styles.div}>
+        <Logout></Logout>
         <t1 style={styles.t1}>Contact Manager</t1>
       </div>
 

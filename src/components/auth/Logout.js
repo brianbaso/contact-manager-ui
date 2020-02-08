@@ -7,12 +7,25 @@ const Logout = () => {
   };
 
   return (
-    <button onClick={logout} style={styles}>
+    <button onClick={logout} style={styles.btn}>
       Logout
     </button>
   );
 };
 
-const styles = {};
+const styles = {
+  btn: {
+    // borderRadius: "30px",
+    position: "relative",
+    height: "100%",
+    bottom: "8%",
+
+    // Color
+    border: "1px solid white",
+    color: "white",
+    background:
+      "linear-gradient(227deg, rgba(3,164,166,1) 38%, rgba(178,31,228,1) 76%, rgba(137,43,235,1) 100%)"
+  }
+};
 
 export default Logout;
