@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -8,8 +7,8 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthProvider } from "./components/auth/Auth";
 import Logout from "./components/auth/Logout";
 import { AuthContext } from "./components/auth/Auth";
-import Homepage from './Homepage.js';
-import "./HomepageStyle.scss";
+import Homepage from "./Homepage.js";
+// import "./HomepageStyle.scss";
 
 const HomePageTest = () => {
   const { currentUser } = useContext(AuthContext);
@@ -18,9 +17,9 @@ const HomePageTest = () => {
   }
 
   return (
-        <div>
-        <Homepage />
-        </div>
+    <div>
+      <Homepage />
+    </div>
   );
 };
 
