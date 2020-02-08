@@ -36,17 +36,6 @@ class Homepage extends React.Component {
       <div style={styles.body}>
         <Header />
         <SearchBar></SearchBar>
-        {/* {this.state.contacts.map((contact, idx) => {
-            return (
-              <ContactCard
-                key={contact.id}
-                name={contact.data.name}
-                address={contact.data.address}
-                phoneNumber={contact.data.phoneNumber}
-                style={styles.ContactCard}
-              />
-            );
-          })} */}
       </div>
     );
   }
