@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import axios from 'axios';
 import "./ContactCardStyle.scss";
+import "./Buttons.css";
 
 
 class ContactCard extends React.Component {
@@ -34,7 +35,7 @@ class ContactCard extends React.Component {
                     </phone1> <br /> <br />
                     <ad1> Address: {this.props.address}  </ad1>
                 </p>
-                <button onClick={this.onDelete.bind(this)} className = "delButton">Delete</button>
+                <button id="delButton" onClick={this.onDelete.bind(this)} className = "delButton">Delete</button>
             </div4>
         );
     }
