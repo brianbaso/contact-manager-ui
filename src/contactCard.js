@@ -4,18 +4,25 @@ import "./ContactCardStyle.scss";
 
 
 class ContactCard extends React.Component {
+
+    constructor(props)
+    {
+        super(props);
+
+        this.contactId = props.id;
+        console.log(this.contactId);
+    }
     // display in console what the contactCard is getting for props
     componentWillRender() {
-        console.log(this.props)
     }
 
-    onDelete()
-    {
-      let meetupId = this.state.details.id;
-      axios.delete(`http://localhost:3000${meetupId}`)
-        .then(response => {
-          this.props.history.push('/');
-        }).catch(err => console.log(err));
+   onDelete()
+   {
+       console.log(this.contactId);
+        axios.delete(`http://localhost:3000/${this.contactId}`)
+            .then(response => {
+            this.props.history.push('/');
+            }).catch(err => console.log(err));
     }
     render() {
         // display a contact card
@@ -27,7 +34,7 @@ class ContactCard extends React.Component {
                     </phone1> <br /> <br />
                     <ad1> Address: {this.props.address}  </ad1>
                 </p>
-                <button onClick={this.onDelete.bind(this.onDelete)} className = "Delete Button">Delete</button>
+                <button onClick={this.onDelete.bind(this)} className = "delButton">Delete</button>
             </div4>
         );
     }

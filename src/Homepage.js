@@ -36,9 +36,11 @@ class Homepage extends React.Component {
       <div>
         <Header />
         {this.state.contacts.map((contact, idx) => {
+          console.log(contact);
           return (
             <ContactCard
               key={contact.id}
+              id={contact.id}
               name={contact.data.name}
               address={contact.data.address}
               phoneNumber={contact.data.phoneNumber}
