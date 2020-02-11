@@ -15,7 +15,7 @@ class Homepage extends React.Component {
 
   // invoked immediately after a component is mounted, good place for network requests
   componentDidMount() {
-    // cors-anywhere to fix the cors error
+    // cors-anywhere to fix the cors erro
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts"
