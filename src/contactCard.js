@@ -2,8 +2,7 @@
 import axios from 'axios';
 import "./ContactCardStyle.scss";
 import "./Buttons.css";
-
-
+import LoginPage from './pages/LoginPage'
 class ContactCard extends React.Component {
 
     constructor(props)
@@ -20,9 +19,10 @@ class ContactCard extends React.Component {
    onDelete()
    {
        console.log(this.contactId);
-        axios.delete(`http://localhost:3000/${this.contactId}`)
+        axios.delete(`https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/${this.contactId}`)
             .then(response => {
-            this.props.history.push('/');
+                console.log(response);
+            this.props.history.push('/Login');
             }).catch(err => console.log(err));
     }
     render() {

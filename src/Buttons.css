@@ -7,3 +7,12 @@
     left: 700px;
     top: 5px;
 }
+
+#editButton {
+    font-family: Arial;
+    color: #000000;
+    font-weight: 600;
+    position: absolute;
+    left: 700px;
+    top: 5px;
+}
