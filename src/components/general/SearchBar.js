@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
+import { InstantSearch, SearchBox } from "react-instantsearch/dom";
 
 const SearchList = ({ list, search }) => {
   const data = list.filter(
@@ -23,6 +24,10 @@ const SearchList = ({ list, search }) => {
   */
   return <div></div>;
 };
+
+const Sidebar = () => <div className="sidebar"></div>;
+
+const Content = () => <div className="content"></div>;
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -64,21 +69,38 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <div className="SearchBar" style={styles.searchWrapper}>
-          <i style={styles.imageWrapper}>
-            <img src={Magnifying_Glass} style={styles.image} />
-          </i>
-          <input
-            style={styles.searchbar}
-            value={this.state.search}
-            placeholder="Search"
-            onChange={this.handleSearch}
-          ></input>
-        </div>
-        <div className="SearchList">
-          <SearchList list={this.state.accounts} search={this.state.search} />
-        </div>
+        <InstantSearch
+          apiKey="43e46f3981e262a43fc2a0c433d79b21"
+          appId="B1JJN0FQXD"
+          indexName="contacts"
+        >
+          <header>
+            <SearchBox
+              translations={{ placeholder: "Searchy Search" }}
+            ></SearchBox>
+          </header>
+          <main>
+            <Sidebar />
+            <Content />
+          </main>
+        </InstantSearch>
       </div>
+      // <div>
+      //   <div className="SearchBar" style={styles.searchWrapper}>
+      //     <i style={styles.imageWrapper}>
+      //       <img src={Magnifying_Glass} style={styles.image} />
+      //     </i>
+      //     <input
+      //       style={styles.searchbar}
+      //       value={this.state.search}
+      //       placeholder="Search"
+      //       onChange={this.handleSearch}
+      //     ></input>
+      //   </div>
+      //   <div className="SearchList">
+      //     <SearchList list={this.state.accounts} search={this.state.search} />
+      //   </div>
+      // </div>
     );
   }
 }
