@@ -1,9 +1,29 @@
 ﻿import React from "react";
+import axios from "axios";
+import "./Buttons.css";
 
 class ContactCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.contactId = props.id;
+    console.log(this.contactId);
+  }
   // display in console what the contactCard is getting for props
   componentWillRender() {
     console.log(this.props);
+  }
+
+  onDelete() {
+    console.log(this.contactId);
+    axios
+      .delete(
+        `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/${this.contactId}`
+      )
+      .then(response => {
+        console.log(response);
+        this.props.history.push("/Login");
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -27,6 +47,13 @@ class ContactCard extends React.Component {
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
         </p>
+        <button
+          id="delButton"
+          onClick={this.onDelete.bind(this)}
+          className="delButton"
+        >
+          Delete
+        </button>
       </div4>
     );
   }
