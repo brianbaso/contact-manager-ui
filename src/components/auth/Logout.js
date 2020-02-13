@@ -19,6 +19,8 @@ const styles = {
     position: "relative",
     height: "100%",
     bottom: "8%",
+    left: "94.5%",
+    //left:"1205px",
 
     // Color
     border: "1px solid white",

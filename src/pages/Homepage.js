@@ -44,12 +44,15 @@ class Homepage extends React.Component {
 const styles = {
   // This is the background color for the big portion of the page
   body: {
-    padding: "0px",
-    backgroundColor: "#33B8F8"
+    //padding: "0px",
+    backgroundColor: "#33B8F8",
+    height: "100vh",
+    maxWidth: "100%",
+    overflowX:"hidden"
   },
   ContactCard: {
-    position: "relative",
-    paddingTop: "100000px"
+    position: "relative"
+    //paddingTop: "100000px"
   }
 };
 
