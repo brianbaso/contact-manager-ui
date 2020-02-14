@@ -1,11 +1,14 @@
 ﻿import React from "react";
 import axios from "axios";
 import "./Buttons.css";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 class ContactCard extends React.Component {
   constructor(props) {
     super(props);
     this.contactId = props.id;
+    this.userId = props.userId;
     console.log(this.contactId);
   }
   // display in console what the contactCard is getting for props
@@ -13,11 +16,24 @@ class ContactCard extends React.Component {
     console.log(this.props);
   }
 
+  onEdit() {
+    axios
+      .request({
+        method: "put",
+        url: `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`,
+        data: newContact
+      })
+      .then(response => {
+        this.props.history.push("/");
+      })
+      .catch(err => console.log(err));
+  }
+
   onDelete() {
     console.log(this.contactId);
     axios
       .delete(
-        `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/${this.contactId}`
+        `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`
       )
       .then(response => {
         console.log(response);
