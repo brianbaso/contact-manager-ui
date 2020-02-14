@@ -15,7 +15,7 @@ class Homepage extends React.Component {
 
   // invoked immediately after a component is mounted, good place for network requests
   componentDidMount() {
-    // cors-anywhere to fix the cors erro
+    // cors-anywhere to fix the cors error
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts"
@@ -44,7 +44,6 @@ class Homepage extends React.Component {
 const styles = {
   // This is the background color for the big portion of the page
   body: {
-    //padding: "0px",
     backgroundColor: "#33B8F8",
     height: "100vh",
     maxWidth: "100%",
