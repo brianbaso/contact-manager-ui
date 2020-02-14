@@ -24,7 +24,8 @@ class ContactCard extends React.Component {
         data: newContact
       })
       .then(response => {
-        this.props.history.push("/");
+        console.log(response);
+        window.location.reload(false);
       })
       .catch(err => console.log(err));
   }
@@ -37,7 +38,7 @@ class ContactCard extends React.Component {
       )
       .then(response => {
         console.log(response);
-        this.props.history.push("/Login");
+        window.location.reload(false);
       })
       .catch(err => console.log(err));
   }
