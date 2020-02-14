@@ -30,7 +30,7 @@ const styles = {
     textAlign: "left",
     color: "#ffffff",
     fontSize: "200%"
-  }
+    },
 };
 
 export default Header;

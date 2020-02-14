@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
 import ContactCard from "./ContactCard";
+import * as firebase from "firebase/app";
+import "firebase/auth"
 
 const SearchList = ({ list, search }) => {
   const data = list.filter(
@@ -49,7 +51,35 @@ class SearchBar extends React.Component {
     };
   }
 
-  componentWillMount() {
+    componentWillMount() {
+    let currentComponent = this;
+        // check if user is signed in
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in, use their uid for getting their contacts
+                var uid = user.uid;
+                console.log(uid);
+                var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
+                console.log(hyper);
+                //debugger;
+                axios
+                    .get(
+                        hyper
+                    )
+                    .then(res => {
+                        currentComponent.setState({
+                            accounts: res.data.map(x => {
+                                x.data["id"] = x.id;
+                                return x.data;
+                            })
+                        });
+                    });
+            }
+            else {
+
+            }
+        });
+/*
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/"
@@ -62,6 +92,7 @@ class SearchBar extends React.Component {
           })
         });
       });
+*/
   }
 
   handleSearch = e => {
