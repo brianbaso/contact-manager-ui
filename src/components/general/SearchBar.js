@@ -7,6 +7,8 @@ import "firebase/auth";
 import "firebase/database";
 import { InstantSearch, SearchBox } from "react-instantsearch/dom";
 
+// https://www.youtube.com/watch?v=leD2RSJ-AfY
+// https://firebase.google.com/docs/reference/js/firebase.database.Query
 const SearchBar = () => {
   const [accounts, setAccounts] = useState([]);
   const [search, setSearch] = useState("");
