@@ -14,7 +14,6 @@ class Homepage extends React.Component {
 
     }
 
-    
   // invoked immediately after a component is mounted, good place for network requests
   componentDidMount() {
     let currentComponent = this;
@@ -23,18 +22,14 @@ class Homepage extends React.Component {
         if (user) {
             // User is signed in, use their uid for getting their contacts
             var uid = user.uid;
-            //console.log(uid);
             var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
-            //console.log(hyper);
-            //debugger;
+
             axios
                 .get(
                     hyper
                 )
                 .then(res => {
-                    //console.log(res.data);
                     currentComponent.setState({ contacts: res.data });
-                    //console.log(currentComponent.state.contacts);
                 })
                 .catch(e => {
                     console.log("Error getting contacts", e);

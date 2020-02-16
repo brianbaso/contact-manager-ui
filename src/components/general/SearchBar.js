@@ -13,24 +13,6 @@ const SearchList = ({ list, search }) => {
       (x.address && x.address.toLowerCase().includes(search.toLowerCase()))
   );
 
-  // key={contact.id}
-  // name={contact.data.name}
-  // address={contact.data.address}
-  // phoneNumber={contact.data.phoneNumber}
-  // style={styles.ContactCard}
-
-  // When done, just throw in the contact component in here, like so
-  /*
-  {data.map((x, idx) => (
-        <Contact
-          key={idx}
-          show={false}
-          contact={x}
-          style={{ border: "5px solid white" }}
-        />
-      ))}
-  */
-
   return data.map((x, idx) => (
     <ContactCard
       key={idx}
@@ -72,24 +54,7 @@ class SearchBar extends React.Component {
                         });
                     });
             }
-            else {
-
-            }
         });
-/*
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/"
-      )
-      .then(res => {
-        this.setState({
-          accounts: res.data.map(x => {
-            x.data["id"] = x.id;
-            return x.data;
-          })
-        });
-      });
-*/
   }
 
   handleSearch = e => {
@@ -109,7 +74,7 @@ class SearchBar extends React.Component {
       <div>
         <div className="SearchBar" style={styles.searchWrapper}>
           <i style={styles.imageWrapper}>
-            <img src={Magnifying_Glass} style={styles.image} />
+            <img src={Magnifying_Glass} alt={'magnify'} style={styles.image} />
           </i>
           <input
             style={styles.searchbar}

@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import Logout from "../auth/Logout";
 import CreateContact from "./CreateContact";
+
 class Header extends React.Component {
   render() {
     return (

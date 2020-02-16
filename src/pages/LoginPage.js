@@ -41,7 +41,7 @@ const LoginPage = () => {
             smallOnclick={"/register"}
           />
         </div>
-        <img src={Women} style={styles.img} />
+        <img src={Women} alt={'women'} style={styles.img} />
       </div>
     </div>
   );
@@ -69,8 +69,6 @@ const styles = {
     // Display
     width: "70%",
     height: "80%",
-    // border: "4px solid white",
-    // display: "flex",
     flexDirection: "column"
   },
   left: {
