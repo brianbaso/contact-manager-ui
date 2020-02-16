@@ -1,9 +1,10 @@
 ﻿import React from "react";
+import axios from "axios";
+import "./Buttons.css";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import axios from "axios";
+
 class ContactCard extends React.Component {
-  // display in console what the contactCard is getting for props
   constructor(props) {
     super(props);
     this.contactId = props.id;
@@ -74,6 +75,13 @@ class ContactCard extends React.Component {
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
         </p>
+        <button
+          id="delButton"
+          onClick={this.onDelete.bind(this)}
+          className="delButton"
+        >
+          Delete
+        </button>
       </div4>
     );
   }
