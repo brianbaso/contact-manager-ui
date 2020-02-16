@@ -1,17 +1,13 @@
-﻿import React from "react";
 import Logout from "../auth/Logout";
-import CreateContact from "./CreateContact";
-class Header extends React.Component {
+import React from "react";
+
+class CCHeader extends React.Component {
   render() {
     return (
       <div style={styles.div}>
         <Logout></Logout>
-        feature/contactly
-        <t1 style={styles.t1}>Contactly</t1>
+        <t1 style={styles.t1}>Contact Manager</t1>
       </div>
-
-      // put the create contact button somewhere in here.
-      // edit the headerstyle css with left padding to get over to the right
     );
   }
 }
@@ -35,4 +31,4 @@ const styles = {
   }
 };
 
-export default Header;
+export default CCHeader;
