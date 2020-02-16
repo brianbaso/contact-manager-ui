@@ -20,6 +20,7 @@ const styles = {
     height: "80%",
     left: "94.5%",
     bottom: "7px",
+    borderRadius: "5px",
 
     // Color
     border: "1px solid white",
