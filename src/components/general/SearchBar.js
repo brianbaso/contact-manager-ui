@@ -5,7 +5,6 @@ import ContactCard from "./ContactCard";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-import { InstantSearch, SearchBox } from "react-instantsearch/dom";
 
 // https://www.youtube.com/watch?v=leD2RSJ-AfY
 // https://firebase.google.com/docs/reference/js/firebase.database.Query
@@ -16,6 +15,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
+      console.log(firebase.database().ref("contacts"));
       if (user) {
         setuid(user.uid);
         axios
