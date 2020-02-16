@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
 import ContactCard from "./ContactCard";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 const SearchList = ({ list, search }) => {
   const data = list.filter(
@@ -50,18 +52,25 @@ class SearchBar extends React.Component {
   }
 
   componentWillMount() {
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/contacts/"
-      )
-      .then(res => {
-        this.setState({
-          accounts: res.data.map(x => {
-            x.data["id"] = x.id;
-            return x.data;
-          })
-        });
-      });
+    firebase
+      .auth()
+      .onAuthStateChanged(user => {
+        if (user)
+          axios
+            .get(
+              `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${user.uid}/contacts/`
+            )
+            .then(res => {
+              console.log(res.data);
+              this.setState({
+                accounts: res.data.map(x => {
+                  x.data["id"] = x.id;
+                  return x.data;
+                })
+              });
+            });
+      })
+      .bind(this);
   }
 
   handleSearch = e => {
