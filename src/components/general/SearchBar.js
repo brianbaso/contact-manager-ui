@@ -51,17 +51,14 @@ class SearchBar extends React.Component {
     };
   }
 
-    componentWillMount() {
+    componentDidMount() {
     let currentComponent = this;
         // check if user is signed in
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 // User is signed in, use their uid for getting their contacts
                 var uid = user.uid;
-                console.log(uid);
                 var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
-                console.log(hyper);
-                //debugger;
                 axios
                     .get(
                         hyper
