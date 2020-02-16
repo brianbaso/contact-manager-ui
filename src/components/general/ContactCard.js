@@ -8,33 +8,44 @@ class ContactCard extends React.Component {
   constructor(props) {
     super(props);
     this.contactId = props.id;
-    this.userId = props.userId;
-    console.log(this.contactId);
+    this.state = {
+      userId: ""
+    };
+    // console.log(this.contactId);
   }
   // display in console what the contactCard is getting for props
-  componentWillRender() {
-    console.log(this.props);
+  componentDidMount() {
+    // console.log(this.props);
+    firebase
+      .auth()
+      .onAuthStateChanged(user => {
+        if (user) {
+          this.setState({ userId: user.uid });
+        }
+      })
+      .bind(this);
   }
 
   onEdit() {
-    axios
-      .request({
-        method: "put",
-        url: `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`,
-        data: newContact
-      })
-      .then(response => {
-        console.log(response);
-        window.location.reload(false);
-      })
-      .catch(err => console.log(err));
+    // axios
+    //   .request({
+    //     method: "put",
+    //     url: `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`,
+    //     data: newContact
+    //   })
+    //   .then(response => {
+    //     console.log(response);
+    //     window.location.reload(false);
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   onDelete() {
+    // console.log("contact");
     console.log(this.contactId);
     axios
       .delete(
-        `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`
+        `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.state.userId}/contacts/${this.contactId}`
       )
       .then(response => {
         console.log(response);
