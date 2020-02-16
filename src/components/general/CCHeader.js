@@ -6,7 +6,7 @@ class CCHeader extends React.Component {
     return (
       <div style={styles.div}>
         <Logout></Logout>
-        <t1 style={styles.t1}>Contact Manager</t1>
+        <t1 style={styles.t1}>Contactly</t1>
       </div>
     );
   }
