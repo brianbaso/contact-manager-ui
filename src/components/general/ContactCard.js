@@ -1,9 +1,56 @@
 ﻿import React from "react";
-
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import axios from "axios";
 class ContactCard extends React.Component {
   // display in console what the contactCard is getting for props
-  componentWillRender() {
-    console.log(this.props);
+  constructor(props) {
+    super(props);
+    this.contactId = props.id;
+    this.state = {
+      userId: ""
+    };
+    // console.log(this.contactId);
+  }
+  // display in console what the contactCard is getting for props
+  componentDidMount() {
+    // console.log(this.props);
+    firebase
+      .auth()
+      .onAuthStateChanged(user => {
+        if (user) {
+          this.setState({ userId: user.uid });
+        }
+      })
+      .bind(this);
+  }
+
+  onEdit() {
+    // axios
+    //   .request({
+    //     method: "put",
+    //     url: `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.userId}/contacts/${this.contactId}`,
+    //     data: newContact
+    //   })
+    //   .then(response => {
+    //     console.log(response);
+    //     window.location.reload(false);
+    //   })
+    //   .catch(err => console.log(err));
+  }
+
+  onDelete() {
+    // console.log("contact");
+    console.log(this.contactId);
+    axios
+      .delete(
+        `https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${this.state.userId}/contacts/${this.contactId}`
+      )
+      .then(response => {
+        console.log(response);
+        window.location.reload(false);
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
