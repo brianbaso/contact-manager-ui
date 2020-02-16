@@ -10,9 +10,11 @@ class Homepage extends React.Component {
 
     this.state = {
       contacts: []
-    };
-  }
+      };
 
+    }
+
+    
   // invoked immediately after a component is mounted, good place for network requests
   componentDidMount() {
     let currentComponent = this;
@@ -44,7 +46,6 @@ class Homepage extends React.Component {
 
   render() {
     return (
-      // NEED TO INSERT: search bar after the header
       // pass the information to contactCard
       <div style={styles.body}>
         <Header />
