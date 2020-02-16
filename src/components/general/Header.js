@@ -6,7 +6,6 @@ class Header extends React.Component {
     return (
       <div style={styles.div}>
         <Logout></Logout>
-        feature/contactly
         <t1 style={styles.t1}>Contactly</t1>
       </div>
 
