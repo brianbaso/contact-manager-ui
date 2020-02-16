@@ -13,13 +13,16 @@ const CreateContactPage = () => {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 var uid = user.uid;
-                axios.post('https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts/', {
+                var querystring = require('querystring');
+                axios.post('https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts/', 
+                querystring.stringify({
                     name: name,
                     phoneNumber: phoneNumber,
-                    address: address
-                }).then(res => {console.log(uid)});
+                    address: address 
+                })).then(res => {console.log(uid)});
             }
             else {
+                console.log("ass");
             }
 
             window.location.href = "/";

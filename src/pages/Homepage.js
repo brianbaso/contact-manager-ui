@@ -23,18 +23,18 @@ class Homepage extends React.Component {
         if (user) {
             // User is signed in, use their uid for getting their contacts
             var uid = user.uid;
-            console.log(uid);
+            //console.log(uid);
             var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
-            console.log(hyper);
+            //console.log(hyper);
             //debugger;
             axios
                 .get(
                     hyper
                 )
                 .then(res => {
-                    console.log(res.data);
+                    //console.log(res.data);
                     currentComponent.setState({ contacts: res.data });
-                    console.log(currentComponent.state.contacts);
+                    //console.log(currentComponent.state.contacts);
                 })
                 .catch(e => {
                     console.log("Error getting contacts", e);

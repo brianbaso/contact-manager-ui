@@ -1,4 +1,3 @@
-import CreateContact from "./CreateContact";
 import Logout from "../auth/Logout";
 import React from "react";
 
