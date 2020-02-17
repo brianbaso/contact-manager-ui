@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import firebase from 'firebase';
 import axios from 'axios';
+import Trash_Can from "../../icons/TrashCan.png";
 
 class ContactCard extends React.Component {
   // display in console what the contactCard is getting for props
@@ -49,7 +50,12 @@ class ContactCard extends React.Component {
             {this.props.phoneNumber[5]}-{this.props.phoneNumber[6]}
             {this.props.phoneNumber[7]}
             {this.props.phoneNumber[8]}
-            {this.props.phoneNumber[9]} <button onClick={() =>  { this.deleteContact(this.props.contactId)} }>Delete</button>
+            {this.props.phoneNumber[9]}
+                    <button style={styles.btn} onClick={() => { this.deleteContact(this.props.contactId) }}>
+                    <i style={styles.imageWrapper}>
+                    <img src={Trash_Can} alt={'trash'} style={styles.image} />
+                    </i>
+                    </button>
           </phone1>{" "}
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
@@ -101,7 +107,30 @@ const styles = {
     fontWeight: "600",
     left: "15px",
     top: "-75px"
-  }
+    },
+
+    btn: {
+        position: "relative",
+        height: "3%",
+        width: "3%",
+        left: "43%",
+        top: "-50px",
+
+    },
+
+    imageWrapper: {
+        position: "relative",
+        padding: "10px",
+        pointerEvents: "none"
+    },
+
+    image: {
+        width: "120%",
+        height: "100%",
+        position: "relative",
+        bottom: "1%",
+        left: "-57%"
+    }
 };
 
 export default ContactCard;
