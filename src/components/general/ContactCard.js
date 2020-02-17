@@ -17,8 +17,8 @@ class ContactCard extends React.Component {
         if (user) {
             // User is signed in, use their uid for getting their contacts
             var uid = user.uid;
-            // TODO: try to add the contact's name here?!
-            var confirmation = window.confirm("Are you sure you want to delete " + name + "'s contact?");
+
+          var confirmation = window.confirm("Are you sure you want to delete " + name + "'s contact?");
 
             // delete this contact since user approved
             if (confirmation == true) {
@@ -38,8 +38,6 @@ class ContactCard extends React.Component {
 
             // if they hit cancel then don't delete the contact
         }
-
-
     });
   }
 
