@@ -12,4 +12,15 @@ class CCHeader extends React.Component {
   }
 }
 
+const styles = {
+  t1: {
+    position: "relative",
+    left: "13.7%",
+    paddingLeft: "15px",
+    textAlign: "left",
+    color: "#ffffff",
+    fontSize: "200%"
+  }
+};
+
 export default CCHeader;
