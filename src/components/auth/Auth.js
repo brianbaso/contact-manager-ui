@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as firebase from "firebase/app";
+import 'firebase/auth';
 
 // https://reactjs.org/docs/context.html#classcontexttype
 

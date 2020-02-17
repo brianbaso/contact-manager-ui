@@ -1,5 +1,6 @@
 import Header from "../components/general/CCHeader.js";
 import * as firebase from "firebase/app";
+import 'firebase/auth';
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
@@ -14,11 +15,11 @@ const CreateContactPage = () => {
             if (user) {
                 var uid = user.uid;
                 var querystring = require('querystring');
-                axios.post('https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts/', 
+                axios.post('https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts/',
                 querystring.stringify({
                     name: name,
                     phoneNumber: phoneNumber,
-                    address: address 
+                    address: address
                 })).then(res => {console.log(uid)});
             }
             else {
@@ -151,7 +152,7 @@ const styles = {
         padding: "15px 2px",
         boxShadow: "3px 3px #808080",
         borderRadius: "5px",
-    
+
         // Color
         border: "1px solid white",
         color: "white",
