@@ -6,10 +6,21 @@ class CCHeader extends React.Component {
     return (
       <div>
         <Logout></Logout>
-        <div id="t1">Contact Manager</div>
+        <t1 style={styles.t1}>Contactly</t1>
       </div>
     );
   }
 }
+
+const styles = {
+  t1: {
+    position: "relative",
+    left: "13.7%",
+    paddingLeft: "15px",
+    textAlign: "left",
+    color: "#ffffff",
+    fontSize: "200%"
+  }
+};
 
 export default CCHeader;
