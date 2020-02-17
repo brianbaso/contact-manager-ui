@@ -30,7 +30,7 @@ const SearchBar = () => {
         console.log(uid);
         // This is done for initial screen rendering, not used for searching
         let hyper =
-          "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
+          "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
           uid +
           "/contacts";
         console.log(hyper);

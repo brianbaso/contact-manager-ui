@@ -13,7 +13,7 @@ const App = () => (
       <PrivateRoute exact path="/" component={Homepage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
-      <Route exact path="/createContact" component={CreateContactPage} />
+      <PrivateRoute exact path="/createContact" component={CreateContactPage} />
     </Router>
   </AuthProvider>
 );
