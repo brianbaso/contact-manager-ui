@@ -25,7 +25,7 @@ class ContactCard extends React.Component {
             {this.props.phoneNumber[9]}
           </phone1>{" "}
           <br /> <br />
-          <div style={styles.ad1}> Address: {this.props.address} </div>
+          <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
         </p>
       </div4>
     );
