@@ -3,7 +3,12 @@ import * as firebase from "firebase/app";
 
 const Logout = () => {
   const logout = () => {
-    firebase.auth().signOut();
+    firebase
+      .auth()
+      .signOut()
+      .then(res => {
+        window.location.reload(false);
+      });
   };
 
   return (

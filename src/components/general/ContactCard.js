@@ -1,6 +1,6 @@
 ﻿import React from "react";
-import firebase from 'firebase';
-import axios from 'axios';
+import firebase from "firebase";
+import axios from "axios";
 import Trash_Can from "../../icons/TrashCan.png";
 
 class ContactCard extends React.Component {
@@ -12,25 +12,25 @@ class ContactCard extends React.Component {
   // invoked immediately after a component is mounted, good place for network requests
   deleteContact(contactId) {
     // check if user is signed in
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in, use their uid for getting their contacts
-            var uid = user.uid;
-            var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
-            axios
-                .delete(
-                    hyper
-                )
-                .then(res => {
-                  // refresh page if successful delete
-                  window.location = '/';
-                })
-                .catch(e => {
-                    console.log("Error getting contacts", e);
-                });
-        }
-
-
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in, use their uid for getting their contacts
+        var uid = user.uid;
+        var hyper =
+          "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
+          uid +
+          "/contacts/" +
+          contactId;
+        axios
+          .delete(hyper)
+          .then(res => {
+            // refresh page if successful delete
+            window.location = "/";
+          })
+          .catch(e => {
+            console.log("Error getting contacts", e);
+          });
+      }
     });
   }
 
@@ -51,11 +51,16 @@ class ContactCard extends React.Component {
             {this.props.phoneNumber[7]}
             {this.props.phoneNumber[8]}
             {this.props.phoneNumber[9]}
-                    <button style={styles.btn} onClick={() => { this.deleteContact(this.props.contactId) }}>
-                    <i style={styles.imageWrapper}>
-                    <img src={Trash_Can} alt={'trash'} style={styles.image} />
-                    </i>
-                    </button>
+            <button
+              style={styles.btn}
+              onClick={() => {
+                this.deleteContact(this.props.contactId);
+              }}
+            >
+              <i style={styles.imageWrapper}>
+                <img src={Trash_Can} alt={"trash"} style={styles.image} />
+              </i>
+            </button>
           </phone1>{" "}
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
@@ -107,30 +112,29 @@ const styles = {
     fontWeight: "600",
     left: "15px",
     top: "-75px"
-    },
+  },
 
-    btn: {
-        position: "relative",
-        height: "3%",
-        width: "3%",
-        left: "43%",
-        top: "-50px",
+  btn: {
+    position: "relative",
+    height: "3%",
+    width: "3%",
+    left: "43%",
+    top: "-50px"
+  },
 
-    },
+  imageWrapper: {
+    position: "relative",
+    padding: "10px",
+    pointerEvents: "none"
+  },
 
-    imageWrapper: {
-        position: "relative",
-        padding: "10px",
-        pointerEvents: "none"
-    },
-
-    image: {
-        width: "120%",
-        height: "100%",
-        position: "relative",
-        bottom: "1%",
-        left: "-57%"
-    }
+  image: {
+    position: "relative",
+    width: "120%",
+    height: "100%",
+    bottom: "1%",
+    left: "-50%"
+  }
 };
 
 export default ContactCard;
