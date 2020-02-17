@@ -74,8 +74,8 @@ const styles = {
 
     // Color
     background: "linear-gradient(to right, #30CFD0 0%, #330867 100%)",
-    webkitBackgroundClip: "text",
-    webkitTextFillColor: "transparent"
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent"
   },
   leftContent: {
     // Positioning

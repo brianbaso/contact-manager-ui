@@ -1,24 +1,23 @@
 import React from "react";
-import * as firebase from "firebase/app";
+import "firebase/auth";
 
-const Logout = () => {
-  const logout = () => {
-    firebase.auth().signOut();
+const CreateContact = ({name, phoneNumber, address}) => {
+  const createContact = () => {
+    window.location.href = "/createContact";
   };
 
   return (
-    <button onClick={logout} style={styles.btn}>
-      Logout
+    <button onClick={createContact} style={styles.btn}>
+      Create Contact
     </button>
   );
 };
 
 const styles = {
   btn: {
-    // borderRadius: "30px",
     position: "relative",
     height: "80%",
-    left: "94.5%",
+    left: "59%",
     bottom: "7px",
     borderRadius: "5px",
 
@@ -30,4 +29,4 @@ const styles = {
   }
 };
 
-export default Logout;
+export default CreateContact;

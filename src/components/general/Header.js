@@ -1,11 +1,14 @@
 ﻿import React from "react";
 import Logout from "../auth/Logout";
+import CreateContact from "./CreateContact";
+
 class Header extends React.Component {
   render() {
     return (
       <div style={styles.div}>
         <Logout></Logout>
-        <div style={styles.t1}>Contact Manager</div>
+        <t1 style={styles.t1}>Contactly</t1>
+        <CreateContact> </CreateContact>
       </div>
 
       // put the create contact button somewhere in here.
@@ -18,18 +21,18 @@ const styles = {
   div: {
     position: "relative",
     background: "#38BDFD",
-    width: "1280px",
+    width: "100%",
     height: "50px",
     paddingTop: "1px",
     boxShadow: ".3px .3px #808080"
   },
   t1: {
     position: "relative",
-    left: "280px",
+    left: "13.7%",
     paddingLeft: "15px",
     textAlign: "left",
     color: "#ffffff",
-    fontSize: "30px"
+    fontSize: "200%"
   }
 };
 

@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "../components/general/Header.js";
-import ContactCard from "../components/general/ContactCard";
-import axios from "axios";
 import SearchBar from "../components/general/SearchBar";
+import Header from "../components/general/Header.js";
+import * as firebase from "firebase/app";
+import axios from "axios";
+import React from "react";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class Homepage extends React.Component {
 
   render() {
     return (
-      // NEED TO INSERT: search bar after the header
       // pass the information to contactCard
       <div style={styles.body}>
         <Header />
@@ -28,12 +27,14 @@ class Homepage extends React.Component {
 const styles = {
   // This is the background color for the big portion of the page
   body: {
-    padding: "0px",
-    backgroundColor: "#33B8F8"
+    //padding: "0px",
+    overflowX: "hidden",
+    backgroundColor: "#33B8F8",
+    height: "100vh",
+    width: "100%"
   },
   ContactCard: {
-    position: "relative",
-    paddingTop: "100000px"
+    position: "relative"
   }
 };
 

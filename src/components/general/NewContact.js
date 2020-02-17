@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 class ContactCard extends React.Component {
   // display in console what the contactCard is getting for props
@@ -37,12 +37,14 @@ const styles = {
   div4: {
     position: "relative",
     background: "#ffffff",
-    top: "90px",
+    top: "100px",
     left: "20%",
     paddingTop: "50px",
     paddingLeft: "770px",
     paddingBottom: "60px",
     boxShadow: "3px 3px #808080",
+    // TO DO: fix so it works on the right corners
+    // a very slight rounded corner
     borderRadius: "5px"
   },
 
@@ -55,7 +57,6 @@ const styles = {
     left: "15px",
     top: "-60px"
   },
-
   // phone line for the contact card
   phone1: {
     position: "relative",
