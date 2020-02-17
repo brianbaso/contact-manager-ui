@@ -1,9 +1,36 @@
 ﻿import React from "react";
+import firebase from 'firebase';
+import axios from 'axios';
 
 class ContactCard extends React.Component {
   // display in console what the contactCard is getting for props
   componentWillRender() {
     console.log(this.props);
+  }
+
+  // invoked immediately after a component is mounted, good place for network requests
+  deleteContact(contactId) {
+    // check if user is signed in
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in, use their uid for getting their contacts
+            var uid = user.uid;
+            var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
+            axios
+                .delete(
+                    hyper
+                )
+                .then(res => {
+                  // refresh page if successful delete
+                  window.location = '/';
+                })
+                .catch(e => {
+                    console.log("Error getting contacts", e);
+                });
+        }
+
+
+    });
   }
 
   render() {
@@ -22,7 +49,7 @@ class ContactCard extends React.Component {
             {this.props.phoneNumber[5]}-{this.props.phoneNumber[6]}
             {this.props.phoneNumber[7]}
             {this.props.phoneNumber[8]}
-            {this.props.phoneNumber[9]}
+            {this.props.phoneNumber[9]} <button onClick={() =>  { this.deleteContact(this.props.contactId)} }>Delete</button>
           </phone1>{" "}
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
