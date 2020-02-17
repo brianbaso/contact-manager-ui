@@ -1,7 +1,7 @@
 import React from "react";
 import "firebase/auth";
 
-const CreateContact = ({name, phoneNumber, address}) => {
+const CreateContact = ({ name, phoneNumber, address }) => {
   const createContact = () => {
     window.location.href = "/createContact";
   };

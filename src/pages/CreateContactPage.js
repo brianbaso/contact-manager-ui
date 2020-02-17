@@ -1,13 +1,21 @@
 import Header from "../components/general/CCHeader.js";
 import * as firebase from "firebase/app";
 import { useState } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 
 const CreateContactPage = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setNumber] = useState("");
   const [address, setAddress] = useState("");
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        window.location.href = "/login";
+      }
+    });
+  }, []);
 
   const createContact = () => {
     firebase.auth().onAuthStateChanged(function(user) {
