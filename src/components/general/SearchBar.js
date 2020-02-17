@@ -48,68 +48,45 @@ const SearchBar = () => {
     });
   }, []);
 
-  const handleSearch = e => {
-    setSearch(e);
-  };
-
   const doSearch = e => {
-    handleSearch(e.target.value);
-    console.log(search);
+    const searchString = e.target.value;
+    // Let's you see the value change in the search input field
+    setSearch(searchString);
+
+    // Perform a query on the db given the search string
     const searchedAccounts = [];
-    if (e.target.value === "") {
-      firebase
-        .firestore()
-        .collection(`users/${userID}/contacts`)
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
+    firebase
+      .firestore()
+      .collection(`users/${userID}/contacts`)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // console.log(doc.data());
+
+          const name = doc.data().name;
+          const address = doc.data().address;
+          const phoneNumber = doc.data().phoneNumber;
+
+          if (
+            (name && name.toLowerCase().includes(searchString.toLowerCase())) ||
+            (phoneNumber && phoneNumber.includes(searchString.toLowerCase())) ||
+            (address &&
+              address.toLowerCase().includes(searchString.toLowerCase()))
+          )
             searchedAccounts.push({
               id: doc.id,
               data: {
-                name: doc.data().name,
-                address: doc.data().address,
-                phoneNumber: doc.data().phoneNumber
+                name: name,
+                address: address,
+                phoneNumber: phoneNumber
               }
             });
-          });
-          setAccounts(searchedAccounts);
-        })
-        .catch(function(error) {
-          console.log("Error getting documents: ", error);
         });
-    } else {
-      firebase
-        .firestore()
-        .collection(`users/${userID}/contacts`)
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-            // console.log(doc.data());
-
-            let name = doc.data().name;
-            let address = doc.data().address;
-            let phoneNumber = doc.data().phoneNumber;
-
-            if (
-              (name && name.toLowerCase().includes(search.toLowerCase())) ||
-              (phoneNumber && phoneNumber.includes(search.toLowerCase())) ||
-              (address && address.toLowerCase().includes(search.toLowerCase()))
-            )
-              searchedAccounts.push({
-                id: doc.id,
-                data: {
-                  name: name,
-                  address: address,
-                  phoneNumber: phoneNumber
-                }
-              });
-          });
-          setAccounts(searchedAccounts);
-        })
-        .catch(function(error) {
-          console.log("Error getting documents: ", error);
-        });
-    }
+        setAccounts(searchedAccounts);
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
+      });
   };
 
   return (
