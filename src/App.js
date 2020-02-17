@@ -9,19 +9,6 @@ import Logout from "./components/auth/Logout";
 import { AuthContext } from "./components/auth/Auth";
 import Homepage from "./pages/Homepage";
 
-const HomePageTest = () => {
-  const { currentUser } = useContext(AuthContext);
-  if (!currentUser) {
-    return <Redirect to="/login" />;
-  }
-
-  return (
-    <div>
-      <Homepage />
-    </div>
-  );
-};
-
 const App = () => (
   <AuthProvider>
     <Router>
