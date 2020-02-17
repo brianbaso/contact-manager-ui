@@ -19,6 +19,7 @@ const SearchList = ({ list, search }) => {
       name={x.name}
       address={x.address}
       phoneNumber={x.phoneNumber}
+      contactId={x.id}
     />
   ));
 };
