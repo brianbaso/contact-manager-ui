@@ -13,6 +13,7 @@ const SearchList = ({ list }) => {
       name={x.data.name ? x.data.name : ""}
       address={x.data.address ? x.data.address : ""}
       phoneNumber={x.data.phoneNumber ? x.data.phoneNumber : ""}
+      contactId={x.data.id ? x.data.id : ""}
     />
   ));
 };
