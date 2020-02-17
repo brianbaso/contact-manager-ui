@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
 import ContactCard from "./ContactCard";
@@ -6,43 +6,29 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-const SearchList = ({ list, search }) => {
-  const data = list.filter(
-    (x, idx) =>
-      (x.name && x.name.toLowerCase().includes(search.toLowerCase())) ||
-      (x.phoneNumber && x.phoneNumber.includes(search)) ||
-      (x.address && x.address.toLowerCase().includes(search.toLowerCase()))
-  );
-
-  // console.log(data);
-  return data.map((x, idx) => (
+const SearchList = ({ list }) => {
+  return list.map((x, idx) => (
     <ContactCard
-      key={idx}
-      name={x.name}
-      address={x.address}
-      phoneNumber={x.phoneNumber}
+      key={x.id}
+      name={x.data.name ? x.data.name : ""}
+      address={x.data.address ? x.data.address : ""}
+      phoneNumber={x.data.phoneNumber ? x.data.phoneNumber : ""}
     />
   ));
 };
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: "",
-      accounts: [],
-      msg: ""
-    };
-  }
+const SearchBar = () => {
+  const [accounts, setAccounts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [userID, setUserID] = useState(null);
 
-  componentWillMount() {
-    let currentComponent = this;
-    // check if user is signed in
+  useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in, use their uid for getting their contacts
         let uid = user.uid;
         console.log(uid);
+        // This is done for initial screen rendering, not used for searching
         let hyper =
           "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
           uid +
@@ -50,73 +36,101 @@ class SearchBar extends React.Component {
         console.log(hyper);
         //debugger;
         axios.get(hyper).then(res => {
-          currentComponent.setState({
-            accounts: res.data.map(x => {
-              x.data["id"] = x.id;
-              return x.data;
-            })
+          let init = [];
+          res.data.forEach(x => {
+            init.push({ id: x.id, data: x.data });
           });
+          setAccounts(init);
+          setUserID(uid);
         });
       } else {
       }
     });
-  }
+  }, []);
 
-  handleSearch = e => {
-    this.setState({ search: e.target.value });
+  const handleSearch = e => {
+    setSearch(e);
   };
 
-  handleMessage = e => {
-    this.setState({ msg: e.target.value });
-  };
-
-  doSearch = e => {
-    let currentComponent = this;
-    firebase
-      .firestore()
-      .collection("contacts")
-      .where("name", "==", this.state.search)
-      .get()
-      .then(function(querySnapshot) {
-        let searchedAccounts = [];
-        querySnapshot.forEach(function(doc) {
-          searchedAccounts.push({ id: doc.id, data: doc.data() });
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
+  const doSearch = e => {
+    handleSearch(e.target.value);
+    console.log(search);
+    const searchedAccounts = [];
+    if (e.target.value === "") {
+      firebase
+        .firestore()
+        .collection(`users/${userID}/contacts`)
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            searchedAccounts.push({
+              id: doc.id,
+              data: {
+                name: doc.data().name,
+                address: doc.data().address,
+                phoneNumber: doc.data().phoneNumber
+              }
+            });
+          });
+          setAccounts(searchedAccounts);
+        })
+        .catch(function(error) {
+          console.log("Error getting documents: ", error);
         });
-        currentComponent.setState({ accounts: searchedAccounts });
-      })
-      .catch(function(error) {
-        console.log("Error getting documents: ", error);
-      });
+    } else {
+      firebase
+        .firestore()
+        .collection(`users/${userID}/contacts`)
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            // console.log(doc.data());
+
+            let name = doc.data().name;
+            let address = doc.data().address;
+            let phoneNumber = doc.data().phoneNumber;
+
+            if (
+              (name && name.toLowerCase().includes(search.toLowerCase())) ||
+              (phoneNumber && phoneNumber.includes(search.toLowerCase())) ||
+              (address && address.toLowerCase().includes(search.toLowerCase()))
+            )
+              searchedAccounts.push({
+                id: doc.id,
+                data: {
+                  name: name,
+                  address: address,
+                  phoneNumber: phoneNumber
+                }
+              });
+          });
+          setAccounts(searchedAccounts);
+        })
+        .catch(function(error) {
+          console.log("Error getting documents: ", error);
+        });
+    }
   };
 
-  send = e => {
-    console.log(e.target.value);
-  };
-
-  render() {
-    return (
-      <div>
-        <div className="SearchBar" style={styles.searchWrapper}>
-          <i style={styles.imageWrapper}>
-            <img src={Magnifying_Glass} style={styles.image} />
-          </i>
-          <input
-            style={styles.searchbar}
-            value={this.state.search}
-            placeholder="Search"
-            onChange={this.handleSearch}
-          ></input>
-          <button onClick={this.doSearch}>Clicky</button>
-        </div>
-        <div className="SearchList">
-          <SearchList list={this.state.accounts} search={this.state.search} />
-        </div>
+  return (
+    <div>
+      <div className="SearchBar" style={styles.searchWrapper}>
+        <i style={styles.imageWrapper} onClick={() => console.log("dank")}>
+          <img src={Magnifying_Glass} style={styles.image} />
+        </i>
+        <input
+          style={styles.searchbar}
+          value={search}
+          placeholder="Search"
+          onChange={doSearch}
+        ></input>
       </div>
-    );
-  }
-}
+      <div className="SearchList">
+        <SearchList list={accounts} search={search} />
+      </div>
+    </div>
+  );
+};
 
 const styles = {
   searchWrapper: {
