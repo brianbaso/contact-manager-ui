@@ -2,25 +2,10 @@ import CreateContactPage from "./pages/CreateContactPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthProvider } from "./components/auth/Auth";
-import { AuthContext } from "./components/auth/Auth";
 import RegisterPage from "./pages/RegisterPage";
-import React, { useContext } from "react";
+import React from "react";
 import LoginPage from "./pages/LoginPage";
-import { Redirect } from "react-router";
 import Homepage from "./pages/Homepage";
-
-const HomePageTest = () => {
-  const { currentUser } = useContext(AuthContext);
-  if (!currentUser) {
-    return <Redirect to="/login"/>;
-  }
-
-  return (
-    <div>
-      <Homepage />
-    </div>
-  );
-};
 
 const App = () => (
   <AuthProvider>
