@@ -5,8 +5,9 @@ class Header extends React.Component {
   render() {
     return (
       <div style={styles.div}>
-        <Logout></Logout>
-        <t1 style={styles.t1}>Contactly</t1>
+            <Logout></Logout>
+            <t1 style={styles.t1}>Contactly</t1>
+            <CreateContact> </CreateContact>
       </div>
 
       // put the create contact button somewhere in here.
