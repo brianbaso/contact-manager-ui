@@ -3,25 +3,19 @@ import axios from "axios";
 import Magnifying_Glass from "../../icons/magnifying_glass.png";
 import ContactCard from "./ContactCard";
 import * as firebase from "firebase/app";
-import "firebase/auth"
+import "firebase/auth";
 
-const SearchList = ({ list, search }) => {
-  const data = list.filter(
-    (x, idx) =>
-      (x.name && x.name.toLowerCase().includes(search.toLowerCase())) ||
-      (x.phoneNumber && x.phoneNumber.includes(search)) ||
-      (x.address && x.address.toLowerCase().includes(search.toLowerCase()))
-  );
-
-  return data.map((x, idx) => (
-    <ContactCard
-      key={idx}
-      name={x.name}
-      address={x.address}
-      phoneNumber={x.phoneNumber}
-      contactId={x.id}
-    />
-  ));
+const SearchList = ({ list }) => {
+  return list.map(x => {
+    return (
+      <ContactCard
+        key={x.id}
+        name={x.data.name ? x.data.name : ""}
+        address={x.data.address ? x.data.address : ""}
+        phoneNumber={x.data.phoneNumber ? x.data.phoneNumber : ""}
+      />
+    );
+  });
 };
 
 class SearchBar extends React.Component {
@@ -30,44 +24,56 @@ class SearchBar extends React.Component {
     this.state = {
       search: "",
       accounts: [],
-      msg: ""
+      userid: null
     };
   }
 
-    componentDidMount() {
+  componentDidMount() {
     let currentComponent = this;
-        // check if user is signed in
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in, use their uid for getting their contacts
-                var uid = user.uid;
-                var hyper = "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
-                axios
-                    .get(
-                        hyper
-                    )
-                    .then(res => {
-                        currentComponent.setState({
-                            accounts: res.data.map(x => {
-                                x.data["id"] = x.id;
-                                return x.data;
-                            })
-                        });
-                    });
-            }
-        });
+    // check if user is signed in
+    firebase
+      .auth()
+      .onAuthStateChanged(function(user) {
+        if (user) {
+          let uid = user.uid;
+          let hyper = `https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/${uid}/contacts`;
+
+          axios.get(hyper).then(res => {
+            const init = [];
+
+            res.data.forEach(x => {
+              init.push({ id: x.id, data: x.data });
+            });
+
+            currentComponent.setState({ accounts: init, userid: uid });
+          });
+        }
+      })
+      .bind(this);
   }
 
   handleSearch = e => {
     this.setState({ search: e.target.value });
   };
 
-  handleMessage = e => {
-    this.setState({ msg: e.target.value });
-  };
+  doSearch = e => {
+    const searchString = e.target.value;
+    this.setState({ search: searchString });
 
-  send = e => {
-    console.log(e.target.value);
+    const searchedAccounts = [];
+    firebase
+      .firestore()
+      .collection(`users/${this.state.userid}/contacts`)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const name = doc.data().name;
+          const add = doc.data().address;
+          const num = doc.data().phoneNumber;
+
+          if ((name && name.toLowerCase().includes(searchString.toLowerCase())) || (add && add.))
+        })
+      });
   };
 
   render() {
@@ -75,13 +81,13 @@ class SearchBar extends React.Component {
       <div>
         <div className="SearchBar" style={styles.searchWrapper}>
           <i style={styles.imageWrapper}>
-            <img src={Magnifying_Glass} alt={'magnify'} style={styles.image} />
+            <img src={Magnifying_Glass} alt={"magnify"} style={styles.image} />
           </i>
           <input
             style={styles.searchbar}
             value={this.state.search}
             placeholder="Search"
-            onChange={this.handleSearch}
+            onChange={this.doSearch}
           ></input>
         </div>
         <div className="SearchList">
@@ -97,7 +103,7 @@ const styles = {
     margin: "auto",
     width: "80%"
   },
-    searchbar: {
+  searchbar: {
     positon: "relative",
     width: "76.5%",
     borderRadius: "3px",
