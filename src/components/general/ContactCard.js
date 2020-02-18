@@ -71,24 +71,28 @@ class ContactCard extends React.Component {
     });
   }
 
-  deleteContact(contactId) {
+  deleteContact(contactId, name) {
     // check if user is signed in
-    firebase.auth().onAuthStateChanged(function (user) {
+      firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in, use their uid for getting their contacts
             var uid = user.uid;
-            var hyper = "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
-            axios
-                .delete(
-                    hyper
-                )
-                .then(res => {
-                  // refresh page if successful delete
-                  window.location = '/';
-                })
-                .catch(e => {
-                    console.log("Error getting contacts", e);
-                });
+            var confirmation = window.confirm("Are you sure you want to delete " + name + "'s contact?");
+
+            if (confirmation == true) {
+                var hyper = "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
+                axios
+                    .delete(
+                        hyper
+                    )
+                    .then(res => {
+                        // refresh page if successful delete
+                        window.location = '/';
+                    })
+                    .catch(e => {
+                        console.log("Error getting contacts", e);
+                    });
+            }
         }
     });
   }
@@ -116,11 +120,11 @@ class ContactCard extends React.Component {
             </p>
           :
             <p>
-              <name1 style={styles.name1}> Name: {this.props.name} <button onClick={() => { this.toggleEdit() }}>Edit</button></name1> <br />{" "}
+                    <name1 style={styles.name1}> Name: {this.props.name} <button style={styles.btn2} onClick={() => { this.toggleEdit() }}>Edit</button></name1> <br />{" "}
               <br />
               <phone1 style={styles.phone1}>
                 {" "}
-                Phone: {this.props.phoneNumber} <button onClick={() => { this.deleteContact(this.props.contactId) }}>Delete</button>
+                        Phone: {this.props.phoneNumber} <button style={styles.btn1} onClick={() => { this.deleteContact(this.props.contactId, this.props.name) }}>Delete</button>
               </phone1>{" "}
               <br /> <br />
               <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
@@ -139,8 +143,8 @@ const styles = {
     top: "90px",
     left: "20%",
     paddingTop: "50px",
-    paddingLeft: "770px",
-    paddingBottom: "80px",
+    paddingLeft: "1160px",
+    paddingBottom: "90px",
     boxShadow: "3px 3px #808080",
     borderRadius: "5px"
   },
@@ -152,7 +156,7 @@ const styles = {
     fontWeight: "600",
     position: "relative",
     left: "15px",
-    top: "-60px"
+    top: "-67px"
   },
 
   // phone line for the contact card
@@ -173,29 +177,6 @@ const styles = {
     fontWeight: "600",
     left: "15px",
     top: "-75px"
-    },
-
-    btn: {
-        position: "relative",
-        height: "3%",
-        width: "3%",
-        left: "43%",
-        top: "-50px",
-
-    },
-
-    imageWrapper: {
-        position: "relative",
-        padding: "10px",
-        pointerEvents: "none"
-    },
-
-    image: {
-        width: "120%",
-        height: "100%",
-        position: "relative",
-        bottom: "1%",
-        left: "-57%"
     }
 };
 
