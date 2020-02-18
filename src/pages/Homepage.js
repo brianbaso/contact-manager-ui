@@ -7,6 +7,36 @@ import React from "react";
 class Homepage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      contacts: []
+    };
+  }
+
+  // invoked immediately after a component is mounted, good place for network requests
+  componentDidMount() {
+    let currentComponent = this;
+    // check if user is signed in
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in, use their uid for getting their contacts
+        var uid = user.uid;
+        var hyper =
+          "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
+          uid +
+          "/contacts";
+
+        axios
+          .get(hyper)
+          .then(res => {
+            currentComponent.setState({ contacts: res.data });
+          })
+          .catch(e => {
+            console.log("Error getting contacts", e);
+          });
+      } else {
+      }
+    });
   }
 
   render() {
