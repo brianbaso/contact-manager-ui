@@ -40,7 +40,7 @@ const SearchBar = () => {
           let init = [];
           let count = 0;
           res.data.forEach(x => {
-            if (count !== 4) init.push({ id: x.id, data: x.data });
+            if (count < 4) init.push({ id: x.id, data: x.data });
             count++;
           });
           setAccounts(init);
