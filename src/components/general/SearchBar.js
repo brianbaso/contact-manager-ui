@@ -99,7 +99,7 @@ const styles = {
   },
     searchbar: {
     positon: "relative",
-    width: "76.5%",
+    width: "77.5%",
     borderRadius: "3px",
     textAlign: "left",
     height: "40px",
@@ -107,7 +107,7 @@ const styles = {
     paddingRight: "10px",
     paddingLeft: "15px",
     // position from left of page
-    marginLeft: "6.6%",
+    marginLeft: "8.0%",
     // This makes the text go to the right of the search button
     padding: "12px 43px"
   },
@@ -117,7 +117,7 @@ const styles = {
     pointerEvents: "none"
   },
   image: {
-    width: "3.8%",
+    width: "3.0%",
     height: "3.8%",
     position: "relative",
     bottom: "3px",
