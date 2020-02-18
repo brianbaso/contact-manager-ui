@@ -11,7 +11,7 @@ const AuthForm = ({
   return (
     <>
       <div className="title" style={styles.title}>
-        Contact Manager
+        Contactly
       </div>
       <div className="content" style={styles.leftContent}>
         <form>
