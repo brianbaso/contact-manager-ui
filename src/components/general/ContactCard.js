@@ -82,7 +82,7 @@ class ContactCard extends React.Component {
         // User is signed in, use their uid for getting their contacts
         var uid = user.uid;
         var hyper =
-          "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
+          "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
           uid +
           "/contacts/" +
           contactId;
@@ -100,6 +100,14 @@ class ContactCard extends React.Component {
   }
 
   render() {
+    const num = this.props.phoneNumber;
+    let string = num.length >= 3 ? `(${num[0]}${num[1]}${num[2]}) ` : "";
+    for (let i = 3; i < 10; i++) {
+      if (i === num.length) break;
+      string += `${num[i]}`;
+      if (i === 5) string += "-";
+    }
+
     return (
       <div4 style={styles.div4}>
         <p>
@@ -107,14 +115,7 @@ class ContactCard extends React.Component {
           <br />
           <phone1 style={styles.phone1}>
             {" "}
-            Phone: ({this.props.phoneNumber[0]}
-            {this.props.phoneNumber[1]}
-            {this.props.phoneNumber[2]}) {this.props.phoneNumber[3]}
-            {this.props.phoneNumber[4]}
-            {this.props.phoneNumber[5]}-{this.props.phoneNumber[6]}
-            {this.props.phoneNumber[7]}
-            {this.props.phoneNumber[8]}
-            {this.props.phoneNumber[9]}
+            Phone: {string}
             <button
               style={styles.btn}
               onClick={() => {

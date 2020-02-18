@@ -73,6 +73,7 @@ const CreateContactPage = () => {
             id="number"
             placeholder="Phone Number"
             style={styles.inputLineNum}
+            pattern="([(+]*[0-9]+[()+. -]*)"
           ></input>
           <input
             onChange={updateAddress}
