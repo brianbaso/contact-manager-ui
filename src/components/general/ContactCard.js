@@ -1,6 +1,8 @@
-﻿import React from "react";
+import React from "react";
 import firebase from 'firebase';
 import axios from 'axios';
+import Trash_Can from "../../icons/TrashCan.png";
+import Pencil from "../../icons/pencil.png";
 import querystring from 'querystring';
 
 class ContactCard extends React.Component {
@@ -71,24 +73,32 @@ class ContactCard extends React.Component {
     });
   }
 
-  deleteContact(contactId) {
+  // invoked immediately after a component is mounted, good place for network requests
+  deleteContact(contactId, name) {
     // check if user is signed in
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in, use their uid for getting their contacts
             var uid = user.uid;
-            var hyper = "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
-            axios
-                .delete(
-                    hyper
-                )
-                .then(res => {
-                  // refresh page if successful delete
-                  window.location = '/';
-                })
-                .catch(e => {
-                    console.log("Error getting contacts", e);
-                });
+            var confirmation = window.confirm("Are you sure you want to delete " + name + "'s contact?");
+
+            // delete this contact since user approved
+            if (confirmation == true) {
+                var hyper = "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts/" + contactId;
+                axios
+                    .delete(
+                        hyper
+                    )
+                    .then(res => {
+                        // refresh page if successful delete
+                        window.location = '/';
+                    })
+                    .catch(e => {
+                        console.log("Error getting contacts", e);
+                    });
+            }
+
+            // if they hit cancel then don't delete the contact
         }
     });
   }
@@ -116,11 +126,22 @@ class ContactCard extends React.Component {
             </p>
           :
             <p>
-              <name1 style={styles.name1}> Name: {this.props.name} <button onClick={() => { this.toggleEdit() }}>Edit</button></name1> <br />{" "}
+              <name1 style={styles.name1}> Name: {this.props.name} </name1> <br />{" "}
               <br />
               <phone1 style={styles.phone1}>
                 {" "}
-                Phone: {this.props.phoneNumber} <button onClick={() => { this.deleteContact(this.props.contactId) }}>Delete</button>
+                Phone: {this.props.phoneNumber}
+                        <button style={styles.btn1} onClick={() => { this.deleteContact(this.props.contactId, this.props.name) }}>
+                        <i style={styles.imageWrapper1}>
+                        <img src={Trash_Can} alt={'trash'} style={styles.image1} />
+                        </i>
+                        </button>
+
+                        <button style={styles.btn2} onClick={() => { this.toggleEdit() }}> 
+                            <i style={styles.imageWrapper2}>
+                                <img src={Pencil} alt={'pencil'} style={styles.image2} />
+                            </i>
+                        </button>
               </phone1>{" "}
               <br /> <br />
               <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
@@ -175,27 +196,47 @@ const styles = {
     top: "-75px"
     },
 
-    btn: {
+    btn1: {
         position: "relative",
         height: "3%",
         width: "3%",
         left: "43%",
         top: "-50px",
-
     },
 
-    imageWrapper: {
+    imageWrapper1: {
         position: "relative",
         padding: "10px",
         pointerEvents: "none"
     },
 
-    image: {
+    image1: {
         width: "120%",
         height: "100%",
         position: "relative",
         bottom: "1%",
         left: "-57%"
+    },
+
+    btn2: {
+        position: "relative",
+        height: "34px",
+        width: "37px",
+        left: "40%",
+        top: "-8px",
+    },
+
+    imageWrapper2: {
+        position: "relative",
+        padding: "10px",
+        pointerEvents: "none"
+    },
+
+    image2: {
+        width: "150%",
+        height: "110%",
+        position: "relative",
+        left: "-66%"
     }
 };
 

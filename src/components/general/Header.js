@@ -6,9 +6,9 @@ class Header extends React.Component {
   render() {
     return (
       <div style={styles.div}>
-            <Logout></Logout>
-            <t1 style={styles.t1}>Contactly</t1>
-            <CreateContact> </CreateContact>
+        <Logout></Logout>
+        <t1 style={styles.t1}>Contactly</t1>
+        <CreateContact> </CreateContact>
       </div>
 
       // put the create contact button somewhere in here.
@@ -28,7 +28,7 @@ const styles = {
   },
   t1: {
     position: "relative",
-    left: "13.7%",
+    left: "15%",
     paddingLeft: "15px",
     textAlign: "left",
     color: "#ffffff",

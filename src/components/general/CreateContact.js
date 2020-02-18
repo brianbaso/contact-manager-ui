@@ -17,13 +17,13 @@ const styles = {
   btn: {
     position: "relative",
     height: "80%",
-    left: "65%",
+    left: "63%",
     bottom: "7px",
     borderRadius: "5px",
 
     // Color
     border: "1px solid white",
-    color: "#38BDFD",
+    color: "rgb(56, 189, 253)",
     background:
       "white"
   }

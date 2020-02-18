@@ -10,7 +10,7 @@ class Homepage extends React.Component {
 
     this.state = {
       contacts: []
-      };
+     };
 
     }
 
@@ -60,7 +60,7 @@ const styles = {
     width: "100%"
   },
   ContactCard: {
-    position: "relative",
+    position: "relative"
   }
 };
 
