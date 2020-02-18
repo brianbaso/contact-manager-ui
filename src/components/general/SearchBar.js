@@ -38,8 +38,10 @@ const SearchBar = () => {
         //debugger;
         axios.get(hyper).then(res => {
           let init = [];
+          let count = 0;
           res.data.forEach(x => {
-            init.push({ id: x.id, data: x.data });
+            if (count !== 4) init.push({ id: x.id, data: x.data });
+            count++;
           });
           setAccounts(init);
           setUserID(uid);
