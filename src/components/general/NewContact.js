@@ -6,7 +6,14 @@ class ContactCard extends React.Component {
     console.log(this.props);
   }
 
-  render() {
+    render() {
+    const num = this.props.phoneNumber;
+    let string = num.length >= 3 ? `(${num[0]}${num[1]}${num[2]}) ` : "";
+    for (let i = 3; i < 10; i++) {
+        if (i === num.length) break;
+        string += `${num[i]}`;
+        if (i === 5) string += "-";
+    }
     // display a contact card
     return (
       <div4 style={styles.div4}>
@@ -15,14 +22,7 @@ class ContactCard extends React.Component {
           <br />
           <phone1 style={styles.phone1}>
             {" "}
-            Phone: ({this.props.phoneNumber[0]}
-            {this.props.phoneNumber[1]}
-            {this.props.phoneNumber[2]}) {this.props.phoneNumber[3]}
-            {this.props.phoneNumber[4]}
-            {this.props.phoneNumber[5]}-{this.props.phoneNumber[6]}
-            {this.props.phoneNumber[7]}
-            {this.props.phoneNumber[8]}
-            {this.props.phoneNumber[9]}
+            Phone: {string}
           </phone1>{" "}
           <br /> <br />
           <ad1 style={styles.ad1}> Address: {this.props.address} </ad1>
@@ -62,8 +62,8 @@ const styles = {
     position: "relative",
     fontFamily: "Arial",
     color: " #727279",
-    fontWeight: "600",
-    left: "15px",
+    fontWeight: "1000",
+    left: "5px",
     top: "-67px"
   },
 

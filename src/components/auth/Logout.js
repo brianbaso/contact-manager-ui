@@ -18,6 +18,7 @@ const styles = {
     // borderRadius: "30px",
     position: "relative",
     height: "80%",
+    width:"3.7%",
     left: "94.5%",
     bottom: "7px",
     borderRadius: "5px",

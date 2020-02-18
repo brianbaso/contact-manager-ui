@@ -17,7 +17,7 @@ const styles = {
   btn: {
     position: "relative",
     height: "80%",
-    left: "63%",
+    left: "63.2%",
     bottom: "7px",
     borderRadius: "5px",
 

@@ -23,7 +23,7 @@ const CreateContactPage = () => {
                 })).then(res => {console.log(uid)});
             }
             else {
-                console.log("ass");
+                console.log("error");
             }
 
             window.location.href = "/";
@@ -83,7 +83,7 @@ const styles = {
         position: "relative",
         background: "#ffffff",
         top: "100px",
-        left: "20%",
+        left: "18.3%",
         paddingTop: "50px",
         paddingLeft: "770px",
         paddingBottom: "60px",
@@ -116,7 +116,7 @@ const styles = {
     },
     inputLineName: {
         position: "relative",
-        width: "40%",
+        width: "28%",
         padding: "2px 10px",
         margin: "8px 0",
         left: "70px",
@@ -126,29 +126,29 @@ const styles = {
     },
     inputLineNum: {
         position: "relative",
-        width: "39.5%",
+        width: "27%",
         padding: "2px 10px",
         margin: "8px 0",
-        left: "-435px",
+        left: "-445px",
         bottom: "185px",
         border: "none",
         borderBottom: "2px solid black"
     },
     inputLineAd: {
         position: "relative",
-        width: "38.5%",
+        width: "27%",
         padding: "2px 10px",
         margin: "8px 0",
-        left: "90px",
-        bottom: "190px",
+        left: "-940px",
+        bottom: "140px",
         border: "none",
         borderBottom: "2px solid black"
     },
     btn: {
         position: "relative",
         height: "80%",
-        left: "630px",
-        bottom: "306px",
+        left: "640px",
+        bottom: "265px",
         padding: "15px 2px",
         boxShadow: "1px 1px #808080",
         borderRadius: "5px",
