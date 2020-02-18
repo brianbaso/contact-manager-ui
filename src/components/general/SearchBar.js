@@ -139,7 +139,7 @@ const styles = {
     height: "3.8%",
     position: "relative",
     bottom: "3px",
-    left: "11.5%"
+    left: "11.3%"
   }
 };
 

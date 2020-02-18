@@ -28,7 +28,7 @@ const styles = {
   },
   t1: {
     position: "relative",
-    left: "13.7%",
+    left: "15%",
     paddingLeft: "15px",
     textAlign: "left",
     color: "#ffffff",
