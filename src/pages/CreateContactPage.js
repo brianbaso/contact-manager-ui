@@ -14,7 +14,7 @@ const CreateContactPage = () => {
             if (user) {
                 var uid = user.uid;
                 var querystring = require('querystring');
-                axios.post('https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts/', 
+                axios.post('https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/' + uid + '/contacts', 
                 querystring.stringify({
                     name: name,
                     phoneNumber: phoneNumber,
@@ -22,7 +22,6 @@ const CreateContactPage = () => {
                 })).then(res => {console.log(uid)});
             }
             else {
-                console.log("ass");
             }
 
             window.location.href = "/";
@@ -40,6 +39,16 @@ const CreateContactPage = () => {
     const updateAddress = (e) => {
         setAddress(e.target.value);
     }
+
+    function validate(name, phoneNumber, address) {
+        return {
+          n: name.length === 0,
+          pn: phoneNumber.length != 10,
+          ad: address.length === 0
+        };
+      }
+
+    const isEnabled = phoneNumber.length == 10 && phoneNumber.match(/^[0-9]+$/) != null && address.length > 0 && name.length > 0;
 
     return(
         <div style={styles.body}>
@@ -62,7 +71,7 @@ const CreateContactPage = () => {
                     <input onChange={updateNumber} id="number" placeholder="Phone Number" style={styles.inputLineNum}></input>
                     <input onChange={updateAddress} id="address" placeholder="Address" style={styles.inputLineAd}></input>
                     <br /> <br />
-                    <button onClick={createContact} style={styles.btn}>
+                    <button disabled={!isEnabled} onClick={createContact} style={styles.btn}>
                         Create Contact
                     </button>
                 </p>
@@ -91,7 +100,7 @@ const styles = {
     },
     name1: {
         fontFamily: "Arial",
-        color: " #727279",
+        color: "#727279",
         fontWeight: "600",
         position: "relative",
         left: "15px",
@@ -128,17 +137,17 @@ const styles = {
         width: "39.5%",
         padding: "2px 10px",
         margin: "8px 0",
-        left: "-435px",
+        left: "-34%",
         bottom: "185px",
         border: "none",
-        borderBottom: "2px solid black"
+        borderBottom: "2px solid black",
     },
     inputLineAd: {
         position: "relative",
         width: "38.5%",
         padding: "2px 10px",
         margin: "8px 0",
-        left: "90px",
+        left: "7%",
         bottom: "190px",
         border: "none",
         borderBottom: "2px solid black"
@@ -150,7 +159,7 @@ const styles = {
         bottom: "300px",
         padding: "15px 2px",
         boxShadow: "3px 3px #808080",
-        borderRadius: "5px",
+        borderRadius: "20px",
     
         // Color
         border: "1px solid white",
