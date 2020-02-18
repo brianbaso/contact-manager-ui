@@ -117,7 +117,7 @@ const styles = {
     },
     searchbar: {
         positon: "relative",
-        width: "76.5%",
+        width: "77%",
         borderRadius: "3px",
         textAlign: "left",
         height: "40px",
