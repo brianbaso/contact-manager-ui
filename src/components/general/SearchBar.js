@@ -23,28 +23,28 @@ const SearchBar = () => {
   const [search, setSearch] = useState("");
   const [userID, setUserID] = useState(null);
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in, use their uid for getting their contacts
-        let uid = user.uid;
-        console.log(uid);
-        // This is done for initial screen rendering, not used for searching
-        let hyper =
-          "https://cors-anywhere.herokuapp.com/https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" +
-          uid +
-          "/contacts";
-        console.log(hyper);
-        //debugger;
-        axios.get(hyper).then(res => {
-          let init = [];
-          res.data.forEach(x => {
-            init.push({ id: x.id, data: x.data });
-          });
-          setAccounts(init);
-          setUserID(uid);
+  componentDidMount() {
+    let currentComponent = this;
+        // check if user is signed in
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in, use their uid for getting their contacts
+                var uid = user.uid;
+                var hyper = "https://us-central1-contact-manager-98599.cloudfunctions.net/webAPI/api/v1/users/" + uid + "/contacts";
+                axios
+                    .get(
+                        hyper
+                    )
+                    .then(res => {
+                        currentComponent.setState({
+                            accounts: res.data.map(x => {
+                                x.data["id"] = x.id;
+                                return x.data;
+                            })
+                        });
+                    });
+            }
         });
-      } else {
       }
     });
   }, []);
