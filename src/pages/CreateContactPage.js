@@ -1,5 +1,6 @@
 import Header from "../components/general/CCHeader.js";
 import * as firebase from "firebase/app";
+import "firebase/auth";
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
@@ -165,16 +166,15 @@ const styles = {
     position: "relative",
     height: "80%",
     left: "630px",
-    bottom: "300px",
+    bottom: "306px",
     padding: "15px 2px",
-    boxShadow: "3px 3px #808080",
+    boxShadow: "1px 1px #808080",
     borderRadius: "5px",
 
     // Color
-    border: "1px solid white",
+    //border: "1px solid white",
     color: "white",
-    background:
-      "linear-gradient(227deg, rgba(3,164,166,1) 38%, rgba(178,31,228,1) 76%, rgba(137,43,235,1) 100%)"
+    background: "#38BDFD"
   }
 };
 
